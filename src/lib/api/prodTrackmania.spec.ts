@@ -76,7 +76,7 @@ test('Get season by ID', async t => {
     t.assert(response)
 })
 
-test('Get server by ID', async t => {
+test.skip('Get server by ID', async t => {
     const response = await getServer(tokens.accessToken, '123') // account ID?
     console.log(response)
     t.assert(response)

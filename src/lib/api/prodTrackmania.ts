@@ -1,4 +1,4 @@
-import fetch from 'node-fetch'
+import axios from 'axios'
 
 import { urls, setHeaders } from '../main'
 
@@ -11,12 +11,12 @@ import { urls, setHeaders } from '../main'
  *
  */
 export const getClientConfig = async () => {
-    const response = await fetch(urls.prodTrackmania + '/client/config', {
+    const response = await axios({
+        url: urls.prodTrackmania + '/client/config',
         method: 'GET',
     })
-    const json = await response.json()
 
-    return json
+    return response['data']
 }
 
 /**
@@ -34,13 +34,13 @@ export const getClientConfig = async () => {
  */
 export const getZones = async (accessToken: string) => {
     const headers = setHeaders(accessToken, 'nadeo')
-    const response = await fetch(urls.prodTrackmania + '/zones', {
+    const response = await axios({
+        url: urls.prodTrackmania + '/zones',
         method: 'GET',
         headers,
     })
-    const json = await response.json()
 
-    return json
+    return response['data']
 }
 
 /**
@@ -57,16 +57,13 @@ export const getZones = async (accessToken: string) => {
  */
 export const getAccountZone = async (accessToken: string, accountId: string) => {
     const headers = setHeaders(accessToken, 'nadeo')
-    const response = await fetch(
-        urls.prodTrackmania + '/accounts/' + accountId + '/zone',
-        {
-            method: 'GET',
-            headers,
-        },
-    )
-    const json = await response.json()
+    const response = await axios({
+        url: urls.prodTrackmania + '/accounts/' + accountId + '/zone',
+        method: 'GET',
+        headers,
+    })
 
-    return json
+    return response['data']
 }
 
 /**
@@ -85,13 +82,13 @@ export const getAccountZone = async (accessToken: string, accountId: string) => 
  */
 export const getTrophies = async (accessToken: string) => {
     const headers = setHeaders(accessToken, 'nadeo')
-    const response = await fetch(urls.prodTrackmania + '/trophies/settings', {
+    const response = await axios({
+        url: urls.prodTrackmania + '/trophies/settings',
         method: 'GET',
         headers,
     })
-    const json = await response.json()
 
-    return json
+    return response['data']
 }
 
 /**
@@ -110,16 +107,13 @@ export const getTrophies = async (accessToken: string) => {
  */
 export const getTrophyCount = async (accessToken: string, accountId: string) => {
     const headers = setHeaders(accessToken, 'nadeo')
-    const response = await fetch(
-        urls.prodTrackmania + '/accounts/' + accountId + '/trophies/lastYearSummary',
-        {
-            method: 'GET',
-            headers,
-        },
-    )
-    const json = await response.json()
+    const response = await axios({
+        url: urls.prodTrackmania + '/accounts/' + accountId + '/trophies/lastYearSummary',
+        method: 'GET',
+        headers,
+    })
 
-    return json
+    return response['data']
 }
 
 /**
@@ -134,13 +128,13 @@ export const getTrophyCount = async (accessToken: string, accountId: string) => 
  */
 export const getSeason = async (accessToken: string, uuid: string) => {
     const headers = setHeaders(accessToken, 'nadeo')
-    const response = await fetch(urls.prodTrackmania + '/seasons/' + uuid, {
+    const response = await axios({
+        url: urls.prodTrackmania + '/seasons/' + uuid,
         method: 'GET',
         headers,
     })
-    const json = await response.json()
 
-    return json
+    return response['data']
 }
 
 /**
@@ -155,11 +149,11 @@ export const getSeason = async (accessToken: string, uuid: string) => {
  */
 export const getServer = async (accessToken: string, id: string) => {
     const headers = setHeaders(accessToken, 'nadeo')
-    const response = await fetch(urls.prodTrackmania + '/servers/someId' + id, {
+    const response = await axios({
+        url: urls.prodTrackmania + '/servers/' + id,
         method: 'GET',
         headers,
     })
-    const json = await response.json()
 
-    return json
+    return response['data']
 }

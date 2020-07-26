@@ -53,7 +53,7 @@
   },
   "dependencies": {
     "jwt-decode": "^2.2.0",
-    "node-fetch": "^2.6.0",
+    "axios": "^0.19.2",
     "sha.js": "^2.4.11"
   },
   "devDependencies": {

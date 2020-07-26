@@ -20,15 +20,15 @@ let tokens = {
 test.serial('login to ubi', async t => {
     const response = await loginUbi(credentials)
     console.log(response)
-    ticket = response.ticket
+    ticket = response['ticket']
     t.assert(response)
 })
 
 test.serial('login to trackmania ubi', async t => {
     const response = await loginTrackmaniaUbi(ticket)
     console.log(response)
-    tokens.accessToken = response.accessToken
-    tokens.refreshToken = response.refreshToken
+    tokens.accessToken = response['accessToken']
+    tokens.refreshToken = response['refreshToken']
     t.assert(response)
 })
 
@@ -41,8 +41,8 @@ test.serial('login to trackmania nadeo', async t => {
 test.serial('refresh token', async t => {
     const response = await refreshTokens(tokens.refreshToken)
     console.log(response)
-    tokens.accessToken = response.accessToken
-    tokens.refreshToken = response.refreshToken
+    tokens.accessToken = response['accessToken']
+    tokens.refreshToken = response['refreshToken']
 
     t.assert(response)
 })
