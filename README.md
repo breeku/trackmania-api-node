@@ -1,5 +1,7 @@
 # Trackmania 2020 api node
 
+[![codecov](https://codecov.io/gh/breeku/trackmania2020-api-node/branch/master/graph/badge.svg)](https://codecov.io/gh/breeku/trackmania2020-api-node)
+
 ### [Converting this repo to a npm module](https://github.com/The-Firexx/trackmania2020apidocumentation)
 
 **In early development!**
@@ -10,7 +12,11 @@
 >
 > Also, don't abuse of this API, has they have the right to lock your account since, for them, it's someone that is trying to hack or just trying to give bad performance to the servers
 
-## Basic usage with nodejs
+# Usage
+
+## **[Docs](https://trackmania-api-node.netlify.app)**
+
+### Nodejs
 
 `npm i trackmania-api-node`
 
