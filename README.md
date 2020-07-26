@@ -1,4 +1,4 @@
-# Trackmania2020-api-node
+# Trackmania 2020 api node
 
 ### [Converting this repo to a npm module](https://github.com/The-Firexx/trackmania2020apidocumentation)
 
@@ -12,14 +12,10 @@
 
 ## Basic usage with nodejs
 
-`npm i trackmania2020-api-node`
+`npm i trackmania-api-node`
 
 ```javascript
-const {
-    loginUbi,
-    loginTrackmaniaUbi,
-    getTrophyCount,
-} = require('trackmania2020-api-node')
+const { loginUbi, loginTrackmaniaUbi, getTrophyCount } = require('trackmania-api-node')
 
 const login = async credentials => {
     const { ticket } = await loginUbi(credentials) // login to ubi, level 0

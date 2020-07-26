@@ -1,7 +1,7 @@
 {
-  "name": "trackmania2020-api-node",
+  "name": "trackmania-api-node",
   "version": "0.0.1",
-  "description": "npm module for Trackmania2020 api",
+  "description": "npm module for Trackmania 2020 api",
   "main": "build/main/index.js",
   "typings": "build/main/index.d.ts",
   "module": "build/module/index.js",
@@ -23,7 +23,7 @@
     "watch": "run-s clean build:main && run-p \"build:main -- -w\" \"test:unit -- --watch --verbose\"",
     "cov": "run-s build test:unit cov:html && open-cli coverage/index.html",
     "cov:html": "nyc report --reporter=html",
-    "cov:send": "nyc report --reporter=lcov && codecov",
+    "cov:send": "nyc report --reporter=lcov && codecov -t 3d8c274e-f599-4db9-9092-6e96f227e432",
     "cov:check": "nyc report && nyc check-coverage --lines 100 --functions 100 --branches 100",
     "doc": "run-s doc:html && open-cli build/docs/index.html",
     "doc:html": "typedoc src/ --exclude **/*.spec.ts --target ES6 --mode file --out build/docs",
