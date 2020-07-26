@@ -18,7 +18,6 @@ let tokens = {
 }
 
 test.serial('login to ubi', async t => {
-    console.log(credentials)
     const response = await loginUbi(credentials)
     console.log(response)
     ticket = response.ticket
