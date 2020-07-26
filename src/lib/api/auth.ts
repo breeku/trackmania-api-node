@@ -1,12 +1,15 @@
 import fetch from 'node-fetch'
 
+import jwt_decode from 'jwt-decode'
+
 import { urls, setHeaders } from '../main'
 
 /**
  * Login to Ubisoft (level 0)
  *
  * @param value Base64 encoded email:password
- * @returns Response JSON
+ * @returns Ticket to be used in the next authentication stage, amongst other things
+ *
  */
 export const loginUbi = async (base64: string) => {
     const headers = setHeaders(base64, 'basic')
@@ -24,7 +27,8 @@ export const loginUbi = async (base64: string) => {
  * Login to Trackmania Ubisoft (level 1)
  *
  * @param value Ticket from loginUbi
- * @returns Response JSON
+ * @returns Access and refresh tokens, and accountId.
+ *
  */
 export const loginTrackmaniaUbi = async (ticket: string) => {
     const headers = setHeaders(ticket, 'ubi')
@@ -34,15 +38,18 @@ export const loginTrackmaniaUbi = async (ticket: string) => {
         headers,
     })
     const json = await response.json()
+    const decoded = jwt_decode(json.accessToken)
+    const result = { ...json, accountId: decoded.sub, username: decoded.aun }
 
-    return json
+    return result
 }
 
 /**
  * Login to Trackmania Nadeo (level 2)
  *
  * @param value Access token from loginTrackmaniaUbi
- * @returns Response JSON
+ * @returns Access and refresh tokens, and accountId.
+ *
  */
 export const loginTrackmaniaNadeo = async (accessToken: string, targetAPI: string) => {
     const headers = setHeaders(accessToken, 'nadeo')
@@ -53,8 +60,10 @@ export const loginTrackmaniaNadeo = async (accessToken: string, targetAPI: strin
         headers,
     })
     const json = await response.json()
+    const decoded = jwt_decode(json.accessToken)
+    const result = { ...json, accountId: decoded.sub, username: decoded.aun }
 
-    return json
+    return result
 }
 
 /**
@@ -62,6 +71,7 @@ export const loginTrackmaniaNadeo = async (accessToken: string, targetAPI: strin
  *
  * @param value Refresh token from loginTrackmaniaUbi
  * @returns Refreshed tokens
+ *
  */
 export const refreshTokens = async (refreshToken: string) => {
     const headers = setHeaders(refreshToken, 'nadeo')

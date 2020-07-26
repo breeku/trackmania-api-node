@@ -19,6 +19,7 @@
     "test": "run-s build test:*",
     "test:lint": "tslint --project . && prettier \"src/**/*.ts\" --list-different",
     "test:unit": "nyc --silent ava",
+    "dev": "run-s clean build:main && run-p \"build:main -- -w\\",
     "watch": "run-s clean build:main && run-p \"build:main -- -w\" \"test:unit -- --watch --verbose\"",
     "cov": "run-s build test:unit cov:html && open-cli coverage/index.html",
     "cov:html": "nyc report --reporter=html",
@@ -38,6 +39,7 @@
     "build": "Clean and rebuild the project",
     "fix": "Try to automatically fix any linting problems",
     "test": "Lint and unit test the project",
+    "dev": "Watch and rebuild the project on save",
     "watch": "Watch and rebuild the project on save, then rerun relevant tests",
     "cov": "Rebuild, run tests, then create and open the coverage report",
     "doc": "Generate HTML API documentation and open it in a browser",
@@ -50,6 +52,7 @@
     "node": ">=8.9"
   },
   "dependencies": {
+    "jwt-decode": "^2.2.0",
     "node-fetch": "^2.6.0",
     "sha.js": "^2.4.11"
   },

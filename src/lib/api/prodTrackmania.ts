@@ -8,6 +8,7 @@ import { urls, setHeaders } from '../main'
  * Requires no authentication
  *
  * @returns 3 Keys with id and timeout and settings
+ *
  */
 export const getClientConfig = async () => {
     const response = await fetch(urls.prodTrackmania + '/client/config', {
@@ -29,8 +30,8 @@ export const getClientConfig = async () => {
  * Each zone has an identifier called zoneId and it can be a children of other zones, so there is also a parentId
  *
  * The root of all zones is World that has a null parentId
+ *
  */
-
 export const getZones = async (accessToken: string) => {
     const headers = setHeaders(accessToken, 'nadeo')
     const response = await fetch(urls.prodTrackmania + '/zones', {
@@ -52,6 +53,7 @@ export const getZones = async (accessToken: string) => {
  * @returns ..
  *
  * Object which has your trackmania join date, accountId and zoneId
+ *
  */
 export const getAccountZone = async (accessToken: string, accountId: string) => {
     const headers = setHeaders(accessToken, 'nadeo')
