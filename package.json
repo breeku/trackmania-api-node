@@ -1,11 +1,11 @@
 {
-  "name": "trackmania-api-node",
-  "version": "1.0.0",
-  "description": "npm module for Trackmania API",
+  "name": "trackmania2020-api-node",
+  "version": "0.0.1",
+  "description": "npm module for Trackmania2020 api",
   "main": "build/main/index.js",
   "typings": "build/main/index.d.ts",
   "module": "build/module/index.js",
-  "repository": "https://github.com/breeku/trackmania-api-node",
+  "repository": "https://github.com/breeku/trackmania2020-api-node",
   "license": "MIT",
   "keywords": [],
   "scripts": {
@@ -19,7 +19,7 @@
     "test": "run-s build test:*",
     "test:lint": "tslint --project . && prettier \"src/**/*.ts\" --list-different",
     "test:unit": "nyc --silent ava",
-    "watch": "run-s clean build:main && run-p \"build:main -- -w\" \"test:unit -- --watch\"",
+    "watch": "run-s clean build:main && run-p \"build:main -- -w\" \"test:unit -- --watch --verbose\"",
     "cov": "run-s build test:unit cov:html && open-cli coverage/index.html",
     "cov:html": "nyc report --reporter=html",
     "cov:send": "nyc report --reporter=lcov && codecov",
@@ -50,13 +50,14 @@
     "node": ">=8.9"
   },
   "dependencies": {
+    "node-fetch": "^2.6.0",
     "sha.js": "^2.4.11"
   },
   "devDependencies": {
     "@bitjson/npm-scripts-info": "^1.0.0",
     "@bitjson/typedoc": "^0.15.0-0",
     "@istanbuljs/nyc-config-typescript": "^0.1.3",
-    "ava": "2.2.0",
+    "ava": "3.8.2",
     "codecov": "^3.5.0",
     "cz-conventional-changelog": "^2.1.0",
     "gh-pages": "^2.0.1",
@@ -69,24 +70,22 @@
     "tslint": "^5.18.0",
     "tslint-config-prettier": "^1.18.0",
     "tslint-immutable": "^6.0.1",
-    "typescript": "^3.5.3"
+    "typescript": "^3.5.3",
+    "dotenv": "^8.2.0"
   },
   "ava": {
     "failFast": true,
     "files": [
       "build/main/**/*.spec.js"
     ],
-    "sources": [
-      "build/main/**/*.js"
+    "ignoredByWatcher": [
+      "./build"
     ]
   },
   "config": {
     "commitizen": {
       "path": "cz-conventional-changelog"
     }
-  },
-  "prettier": {
-    "singleQuote": true
   },
   "nyc": {
     "extends": "@istanbuljs/nyc-config-typescript",

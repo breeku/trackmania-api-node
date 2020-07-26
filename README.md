@@ -1,3 +1,5 @@
-# trackmania-api-node
+# Trackmania2020-api-node
 
-npm module for Trackmania API
+### [Converting this repo to a npm module](https://github.com/The-Firexx/trackmania2020apidocumentation)
+
+**In early development!**
