@@ -5,6 +5,7 @@ src/**.js
 .idea/*
 
 coverage
+coverage-ts
 .nyc_output
 *.log
 
