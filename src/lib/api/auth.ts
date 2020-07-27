@@ -87,31 +87,31 @@ export const refreshTokens = async (refreshToken: string): Promise<Itokens> => {
 }
 
 export interface IloginUbi {
-    readonly platformType: string
-    readonly ticket: string
-    readonly twoFactorAuthenticationTicket: boolean
-    readonly profileId: string
-    readonly userId: string
-    readonly nameOnPlatform: string
-    readonly environment: string
-    readonly expiration: string
-    readonly spaceId: string
-    readonly clientIp: string
-    readonly clientIpCountry: string
-    readonly serverTime: string
-    readonly sessionId: string
-    readonly sessionKey: string
-    readonly rememberMeTicket: null | string
+    platformType: string
+    ticket: string
+    twoFactorAuthenticationTicket: boolean
+    profileId: string
+    userId: string
+    nameOnPlatform: string
+    environment: string
+    expiration: string
+    spaceId: string
+    clientIp: string
+    clientIpCountry: string
+    serverTime: string
+    sessionId: string
+    sessionKey: string
+    rememberMeTicket: null | string
 }
 
 export interface IloginTrackmania {
-    readonly accessToken: string
-    readonly refreshToken: string
-    readonly accountId: string
-    readonly username: string
+    accessToken: string
+    refreshToken: string
+    accountId: string
+    username: string
 }
 
 export interface Itokens {
-    readonly accessToken: string
-    readonly refreshToken: string
+    accessToken: string
+    refreshToken: string
 }
