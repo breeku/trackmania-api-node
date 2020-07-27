@@ -3,7 +3,6 @@ import axios from 'axios'
 import jwt_decode from 'jwt-decode'
 
 import { urls, setHeaders } from '../main'
-import { IloginUbi, IloginTrackmania, Itokens } from './auth.d'
 
 /**
  * Login to Ubisoft (level 0)
@@ -85,4 +84,34 @@ export const refreshTokens = async (refreshToken: string): Promise<Itokens> => {
     })
 
     return response['data'] as Itokens
+}
+
+export interface IloginUbi {
+    readonly platformType: string
+    readonly ticket: string
+    readonly twoFactorAuthenticationTicket: boolean
+    readonly profileId: string
+    readonly userId: string
+    readonly nameOnPlatform: string
+    readonly environment: string
+    readonly expiration: string
+    readonly spaceId: string
+    readonly clientIp: string
+    readonly clientIpCountry: string
+    readonly serverTime: string
+    readonly sessionId: string
+    readonly sessionKey: string
+    readonly rememberMeTicket: null | string
+}
+
+export interface IloginTrackmania {
+    readonly accessToken: string
+    readonly refreshToken: string
+    readonly accountId: string
+    readonly username: string
+}
+
+export interface Itokens {
+    readonly accessToken: string
+    readonly refreshToken: string
 }

@@ -1,15 +1,6 @@
 import axios from 'axios'
 
 import { urls, setHeaders } from '../main'
-import {
-    ImapRecords,
-    ISeason,
-    ItrophyCount,
-    Itrophies,
-    IaccountZone,
-    Izones,
-    IclientConfig,
-} from './prodTrackmania.d'
 
 /**
  * Get configuration of a client
@@ -179,4 +170,162 @@ export const getMapRecords = async (
     })
 
     return response['data'] as ReadonlyArray<ImapRecords>
+}
+
+export interface ImapRecords {
+    readonly accountId: string
+    readonly filename: string
+    readonly gameMode: string
+    readonly gameModeCustomData: string
+    readonly mapId: string
+    readonly medal: number
+    readonly recordScore: recordScore
+    readonly removed: boolean
+    readonly scopeId: null | number | string
+    readonly scopeType: string
+    readonly timestamp: string
+    readonly url: string
+}
+
+type recordScore = {
+    readonly respawnCount: number
+    readonly score: number
+    readonly time: number
+}
+
+export interface ISeason {
+    readonly creationTimestamp: string
+    readonly creatorId: string
+    readonly endTimestamp: string
+    readonly gameMode: string
+    readonly gameModeCustomData: string
+    readonly isOfficial: boolean
+    readonly name: string
+    readonly recordScoreType: string
+    readonly seasonId: string
+    readonly seasonMapList: readonly seasonMap[]
+}
+
+type seasonMap = {
+    readonly mapId: string
+    readonly timestamp: string
+}
+
+export interface ItrophyCount {
+    readonly accountId: string
+    readonly points: number
+    readonly t1Count: number
+    readonly t2Count: number
+    readonly t3Count: number
+    readonly t4Count: number
+    readonly t5Count: number
+    readonly t6Count: number
+    readonly t7Count: number
+    readonly t8Count: number
+    readonly t9Count: number
+    readonly timestamp: string
+}
+
+export interface Itrophies {
+    readonly gain: {
+        readonly Solo: {
+            readonly SoloMedal: {
+                readonly ClubOfficial: {
+                    readonly allBronze: allBronze
+                    readonly allSilver: allSilver
+                    readonly allGold: allGold
+                    readonly allAuthor: allAuthor
+                }
+                readonly ClubUnofficial: {
+                    readonly allSilver: allSilver
+                    readonly allGold: allGold
+                    readonly allAuthor: allAuthor
+                }
+                readonly SoloAll: {
+                    readonly allAuthor: allAuthorT5
+                }
+                readonly SoloBlack: {
+                    readonly allBronze: allBronze
+                    readonly allSilver: allSilver
+                    readonly allGold: allGold
+                    readonly allAuthor: allAuthor
+                }
+                readonly SoloBlue: {
+                    readonly allBronze: allBronze
+                    readonly allSilver: allSilver
+                    readonly allGold: allGold
+                    readonly allAuthor: allAuthor
+                }
+                readonly SoloGreen: {
+                    readonly allBronze: allBronze
+                    readonly allSilver: allSilver
+                    readonly allGold: allGold
+                    readonly allAuthor: allAuthor
+                }
+                readonly SoloRed: {
+                    readonly allBronze: allBronze
+                    readonly allSilver: allSilver
+                    readonly allGold: allGold
+                    readonly allAuthor: allAuthor
+                }
+                readonly SoloWhite: {
+                    readonly allBronze: allBronze
+                    readonly allSilver: allSilver
+                    readonly allGold: allGold
+                    readonly allAuthor: allAuthor
+                }
+                readonly TrackOfTheDay: {
+                    readonly allGold: allGold
+                    readonly allAuthor: allAuthor
+                }
+            }
+        }
+    }
+}
+
+type allBronze = { readonly t1Count: number }
+
+type allSilver = { readonly t2Count: number }
+
+type allGold = { readonly t3Count: number }
+
+type allAuthor = { readonly t4Count: number }
+
+type allAuthorT5 = { readonly t5Count: number }
+
+export interface IaccountZone {
+    readonly accountId: string
+    readonly timestamp: string
+    readonly zoneId: string
+}
+
+export interface Izones {
+    readonly icon: string
+    readonly name: string
+    readonly parentId: string
+    readonly zoneId: string
+}
+
+export interface IclientConfig {
+    readonly keys: readonly clientKey[]
+    readonly settings: clientSettings
+}
+
+type clientKey = {
+    readonly id: number
+    readonly timeout: number
+    readonly key: string
+}
+
+type clientSettings = {
+    readonly KillSwitch_ProfileChunk: number
+    readonly KillSwitch_TitleConfig: number
+    readonly KillSwitch_TitleLadder: number
+    readonly KillSwitch_TitlePolicy: number
+    readonly KillSwitch_TitleProfileChunk: number
+    readonly KillSwitch_Xp: number
+    readonly AdsClearCacheOnExit: number
+    readonly AdsMandatory: number
+    readonly MapRecordResetTimestamp: number
+    readonly ClientIP: string
 }
