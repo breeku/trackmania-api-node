@@ -1,6 +1,6 @@
 {
   "name": "trackmania-api-node",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "npm module for Trackmania 2020 api",
   "main": "build/main/index.js",
   "typings": "build/main/index.d.ts",
