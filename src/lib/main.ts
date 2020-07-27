@@ -9,6 +9,7 @@ export const urls = {
             'https://prod.trackmania.core.nadeo.online/v2/authentication/token/refresh',
     },
     prodTrackmania: 'https://prod.trackmania.core.nadeo.online',
+    liveServices: 'https://live-services.trackmania.nadeo.live',
 }
 
 const defaultHeaders = {
