@@ -1,6 +1,6 @@
 # Trackmania 2020 api node
 
-[![codecov](https://codecov.io/gh/breeku/trackmania2020-api-node/branch/master/graph/badge.svg)](https://codecov.io/gh/breeku/trackmania2020-api-node)
+[![codecov](https://codecov.io/gh/breeku/trackmania-api-node/branch/master/graph/badge.svg)](https://codecov.io/gh/breeku/trackmania-api-node)
 
 ### [Converting this repo to a npm module](https://github.com/The-Firexx/trackmania2020apidocumentation)
 
