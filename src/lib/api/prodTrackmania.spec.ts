@@ -1,3 +1,4 @@
+/* tslint:disable */
 import dotenv from 'dotenv'
 dotenv.config()
 

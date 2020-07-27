@@ -24,21 +24,31 @@
 const { loginUbi, loginTrackmaniaUbi, getTrophyCount } = require('trackmania-api-node')
 
 const login = async credentials => {
-    const { ticket } = await loginUbi(credentials) // login to ubi, level 0
-    return await loginTrackmaniaUbi(ticket) // login to trackmania, level 1
+    try {
+        const { ticket } = await loginUbi(credentials) // login to ubi, level 0
+        return await loginTrackmaniaUbi(ticket) // login to trackmania, level 1
+    } catch (e) {
+        // axios error
+        console.log(e.toJSON())
+    }
 }
 
 const getTrophies = async loggedIn => {
     const { accessToken, accountId, username } = loggedIn
-    const trophyCount = await getTrophyCount(accessToken, accountId)
-    console.log(username + ' trophies:')
-    console.log(trophyCount)
+    try {
+        const trophyCount = await getTrophyCount(accessToken, accountId)
+        console.log(username + ' trophies:')
+        console.log(trophyCount)
+    } catch (e) {
+        // axios error
+        console.log(e.toJSON())
+    }
 }
 
 ;(async () => {
     const credentials = Buffer.from('email' + ':' + 'password').toString('base64')
     const loggedIn = await login(credentials)
-    await getTrophies(loggedIn)
+    if (loggedIn) await getTrophies(loggedIn)
 })()
 ```
 

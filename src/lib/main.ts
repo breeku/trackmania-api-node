@@ -17,14 +17,11 @@ const defaultHeaders = {
     'Ubi-RequestedPlatformType': 'uplay',
 }
 
-export const setHeaders = (auth: string, type: string) => {
-    if (type === 'basic') {
-        return { ...defaultHeaders, Authorization: 'Basic ' + auth }
-    } else if (type === 'ubi') {
-        return { ...defaultHeaders, Authorization: 'ubi_v1 t=' + auth }
-    } else if (type === 'nadeo') {
-        return { ...defaultHeaders, Authorization: 'nadeo_v1 t=' + auth }
-    } else {
-        throw new Error('Unknown authorization type')
-    }
-}
+export const setHeaders = (auth: string, type: string) =>
+    type === 'basic'
+        ? { ...defaultHeaders, Authorization: 'Basic ' + auth }
+        : type === 'ubi'
+        ? { ...defaultHeaders, Authorization: 'ubi_v1 t=' + auth }
+        : type === 'nadeo'
+        ? { ...defaultHeaders, Authorization: 'nadeo_v1 t=' + auth }
+        : new Error('Unknown authorization type')

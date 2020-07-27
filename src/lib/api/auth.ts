@@ -14,18 +14,13 @@ import { urls, setHeaders } from '../main'
 export const loginUbi = async (base64: string) => {
     const headers = setHeaders(base64, 'basic')
 
-    try {
-        const response = await axios({
-            url: urls.auth.ubisoft,
-            method: 'post',
-            headers,
-        })
+    const response = await axios({
+        url: urls.auth.ubisoft,
+        method: 'post',
+        headers,
+    })
 
-        return response['data']
-    } catch (e) {
-        console.warn(e)
-        return e
-    }
+    return response['data']
 }
 
 /**
@@ -38,21 +33,16 @@ export const loginUbi = async (base64: string) => {
 export const loginTrackmaniaUbi = async (ticket: string) => {
     const headers = setHeaders(ticket, 'ubi')
 
-    try {
-        const response = await axios({
-            url: urls.auth.trackmaniaUbi,
-            method: 'POST',
-            headers,
-        })
-        const { data } = response
-        const decoded = jwt_decode(data['accessToken'])
-        const result = { ...data, accountId: decoded.sub, username: decoded.aun }
+    const response = await axios({
+        url: urls.auth.trackmaniaUbi,
+        method: 'POST',
+        headers,
+    })
+    const { data } = response
+    const decoded = jwt_decode(data['accessToken'])
+    const result = { ...data, accountId: decoded.sub, username: decoded.aun }
 
-        return result
-    } catch (e) {
-        console.warn(e)
-        return e
-    }
+    return result
 }
 
 /**
@@ -65,22 +55,17 @@ export const loginTrackmaniaUbi = async (ticket: string) => {
 export const loginTrackmaniaNadeo = async (accessToken: string, targetAPI: string) => {
     const headers = setHeaders(accessToken, 'nadeo')
 
-    try {
-        const response = await axios({
-            url: urls.auth.trackmaniaNadeo,
-            method: 'POST',
-            data: JSON.stringify({ audience: targetAPI }),
-            headers,
-        })
-        const { data } = response
-        const decoded = jwt_decode(data['accessToken'])
-        const result = { ...data, accountId: decoded.sub, username: decoded.aun }
+    const response = await axios({
+        url: urls.auth.trackmaniaNadeo,
+        method: 'POST',
+        data: JSON.stringify({ audience: targetAPI }),
+        headers,
+    })
+    const { data } = response
+    const decoded = jwt_decode(data['accessToken'])
+    const result = { ...data, accountId: decoded.sub, username: decoded.aun }
 
-        return result
-    } catch (e) {
-        console.warn(e)
-        return e
-    }
+    return result
 }
 
 /**
@@ -93,16 +78,11 @@ export const loginTrackmaniaNadeo = async (accessToken: string, targetAPI: strin
 export const refreshTokens = async (refreshToken: string) => {
     const headers = setHeaders(refreshToken, 'nadeo')
 
-    try {
-        const response = await axios({
-            url: urls.auth.refreshToken,
-            method: 'POST',
-            headers,
-        })
+    const response = await axios({
+        url: urls.auth.refreshToken,
+        method: 'POST',
+        headers,
+    })
 
-        return response['data']
-    } catch (e) {
-        console.warn(e)
-        return e
-    }
+    return response['data']
 }

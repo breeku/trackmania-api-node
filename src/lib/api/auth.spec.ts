@@ -1,4 +1,4 @@
-// tslint:disable:no-expression-statement
+/* tslint:disable */
 import dotenv from 'dotenv'
 dotenv.config()
 

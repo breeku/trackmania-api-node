@@ -1,13 +1,15 @@
 {
   "name": "trackmania-api-node",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "npm module for Trackmania 2020 api",
   "main": "build/main/index.js",
   "typings": "build/main/index.d.ts",
   "module": "build/module/index.js",
   "repository": "https://github.com/breeku/trackmania2020-api-node",
   "license": "MIT",
-  "keywords": ["trackmania"],
+  "keywords": [
+    "trackmania"
+  ],
   "scripts": {
     "describe": "npm-scripts-info",
     "build": "run-s clean && run-p build:*",
@@ -17,7 +19,7 @@
     "fix:prettier": "prettier \"src/**/*.ts\" --write",
     "fix:tslint": "tslint --fix --project .",
     "test": "run-s build test:*",
-    "test:lint": "tslint --project . && prettier \"src/**/*.ts\" --list-different",
+    "test:lint": "tslint --project . && prettier --write \"src/**/*.ts\"",
     "test:unit": "nyc --silent ava",
     "dev": "run-s clean build:main && run-p \"build:main -- -w\\",
     "watch": "run-s clean build:main && run-p \"build:main -- -w\" \"test:unit -- --watch --verbose\"",
