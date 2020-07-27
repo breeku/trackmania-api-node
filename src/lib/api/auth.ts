@@ -3,15 +3,15 @@ import axios from 'axios'
 import jwt_decode from 'jwt-decode'
 
 import { urls, setHeaders } from '../main'
+import { IloginUbi, IloginTrackmania, Itokens } from './auth.d'
 
 /**
  * Login to Ubisoft (level 0)
  *
  * @param value Base64 encoded email:password
- * @returns Ticket to be used in the next authentication stage, amongst other things
  *
  */
-export const loginUbi = async (base64: string) => {
+export const loginUbi = async (base64: string): Promise<IloginUbi> => {
     const headers = setHeaders(base64, 'basic')
 
     const response = await axios({
@@ -20,17 +20,16 @@ export const loginUbi = async (base64: string) => {
         headers,
     })
 
-    return response['data']
+    return response['data'] as IloginUbi
 }
 
 /**
  * Login to Trackmania Ubisoft (level 1)
  *
  * @param value Ticket from loginUbi
- * @returns Access and refresh tokens, and accountId.
  *
  */
-export const loginTrackmaniaUbi = async (ticket: string) => {
+export const loginTrackmaniaUbi = async (ticket: string): Promise<IloginTrackmania> => {
     const headers = setHeaders(ticket, 'ubi')
 
     const response = await axios({
@@ -42,17 +41,19 @@ export const loginTrackmaniaUbi = async (ticket: string) => {
     const decoded = jwt_decode(data['accessToken'])
     const result = { ...data, accountId: decoded.sub, username: decoded.aun }
 
-    return result
+    return result as IloginTrackmania
 }
 
 /**
  * Login to Trackmania Nadeo (level 2)
  *
  * @param value Access token from loginTrackmaniaUbi
- * @returns Access and refresh tokens, and accountId.
  *
  */
-export const loginTrackmaniaNadeo = async (accessToken: string, targetAPI: string) => {
+export const loginTrackmaniaNadeo = async (
+    accessToken: string,
+    targetAPI: string,
+): Promise<IloginTrackmania> => {
     const headers = setHeaders(accessToken, 'nadeo')
 
     const response = await axios({
@@ -65,17 +66,16 @@ export const loginTrackmaniaNadeo = async (accessToken: string, targetAPI: strin
     const decoded = jwt_decode(data['accessToken'])
     const result = { ...data, accountId: decoded.sub, username: decoded.aun }
 
-    return result
+    return result as IloginTrackmania
 }
 
 /**
  * Refresh tokens
  *
  * @param value Refresh token from loginTrackmaniaUbi
- * @returns Refreshed tokens
  *
  */
-export const refreshTokens = async (refreshToken: string) => {
+export const refreshTokens = async (refreshToken: string): Promise<Itokens> => {
     const headers = setHeaders(refreshToken, 'nadeo')
 
     const response = await axios({
@@ -84,5 +84,5 @@ export const refreshTokens = async (refreshToken: string) => {
         headers,
     })
 
-    return response['data']
+    return response['data'] as Itokens
 }

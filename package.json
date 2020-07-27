@@ -28,8 +28,8 @@
     "cov:send": "nyc report --reporter=lcov && codecov -t 3d8c274e-f599-4db9-9092-6e96f227e432",
     "cov:check": "nyc report && nyc check-coverage --lines 100 --functions 100 --branches 100",
     "doc": "run-s doc:html && open-cli build/docs/index.html",
-    "doc:html": "typedoc src/ --exclude **/*.spec.ts --target ES6 --mode file --out build/docs",
-    "doc:json": "typedoc src/ --exclude **/*.spec.ts --target ES6 --mode file --json build/docs/typedoc.json",
+    "doc:html": "typedoc src/ --exclude **/*.spec.ts --includeDeclarations --excludeExternals --target ES6 --mode file --out build/docs",
+    "doc:json": "typedoc src/ --exclude **/*.spec.ts --includeDeclarations --excludeExternals --target ES6 --mode file --json build/docs/typedoc.json",
     "doc:publish": "gh-pages -m \"[ci skip] Updates\" -d build/docs",
     "version": "standard-version",
     "reset": "git clean -dfx && git reset --hard && npm i",
@@ -48,18 +48,19 @@
     "doc:json": "Generate API documentation in typedoc JSON format",
     "version": "Bump package.json version, update CHANGELOG.md, tag release",
     "reset": "Delete all untracked files and reset the repo to the last commit",
-    "prepare-release": "One-step: clean, build, test, publish docs, and prep a release"
+    "prepare-release": "One-step: clean, build, test, publish docs, and prep a release",
+    "single test": "npx ava build/main/**/*.spec.js --verbose --match='first*last'"
   },
   "engines": {
     "node": ">=8.9"
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "jwt-decode": "^2.2.0",
-    "axios": "^0.19.2"
+    "typedoc": "^0.17.0-3"
   },
   "devDependencies": {
     "@bitjson/npm-scripts-info": "^1.0.0",
-    "@bitjson/typedoc": "^0.15.0-0",
     "@istanbuljs/nyc-config-typescript": "^1.0.1",
     "ava": "3.10.1",
     "codecov": "^3.7.2",
