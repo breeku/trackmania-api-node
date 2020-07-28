@@ -3,12 +3,12 @@ name: CI/CD
 on:
     push:
         branches:
-        - master
-        - gh-actions
+            - master
+            - gh-actions
     pull_request:
         branches:
-        - master
-        - gh-actions
+            - master
+            - gh-actions
 
 jobs:
     build:
@@ -39,6 +39,10 @@ jobs:
 
             - name: Run the tests and generate coverage report
               run: npm run cov:actions
+              env:
+                  UBI_USER: ${{ secrets.UBI_USER }}
+                  UBI_PW: ${{ secrets.UBI_PW }}
+                  TM_ID: ${{ secrets.TM_ID }}
 
             - name: Upload coverage to Codecov
               uses: codecov/codecov-action@v1
