@@ -25,7 +25,8 @@
     "watch": "run-s clean build:main && run-p \"build:main -- -w\" \"test:unit -- --watch\"",
     "cov": "run-s build test:unit cov:html && open-cli coverage/index.html",
     "cov:html": "nyc report --reporter=html",
-    "cov:send": "nyc report --reporter=lcov && codecov -t 3d8c274e-f599-4db9-9092-6e96f227e432",
+    "cov:send": "nyc report --reporter=lcov && codecov",
+    "cov:actions": "run-s build test && nyc report --reporter=lcov",
     "cov:check": "nyc report && nyc check-coverage --lines 100 --functions 100 --branches 100",
     "doc": "run-s doc:html && open-cli build/docs/index.html",
     "doc:html": "typedoc src/ --exclude **/*.spec.ts --includeDeclarations --excludeExternals --target ES6 --mode file --out build/docs",
@@ -64,6 +65,7 @@
   },
   "devDependencies": {
     "@bitjson/npm-scripts-info": "^1.0.0",
+    "@codechecks/client": "^0.1.10",
     "@istanbuljs/nyc-config-typescript": "^1.0.1",
     "ava": "3.10.1",
     "codecov": "^3.7.2",
@@ -80,6 +82,7 @@
     "tslint": "^6.1.2",
     "tslint-config-prettier": "^1.18.0",
     "tslint-immutable": "^6.0.1",
+    "typecov": "^0.2.3",
     "typedoc": "^0.17.0-3",
     "typescript": "^3.9.7",
     "typescript-coverage-report": "^0.1.3"

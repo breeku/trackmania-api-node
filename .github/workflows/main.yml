@@ -1,0 +1,81 @@
+name: CI/CD
+
+on:
+    release:
+        types:
+            - created
+    push:
+        branches:
+            - master
+            - gh-actions
+    pull_request:
+        branches:
+            - master
+            - gh-actions
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                node-version: [12.x]
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v2
+
+            - name: Set up Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-version }}
+
+            - name: Cache dependencies
+              uses: actions/cache@v2
+              with:
+                  path: |
+                      **/node_modules
+                  key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+
+            - name: Install dependencies
+              run: npm i
+
+            - name: Run the tests and generate coverage report
+              run: npm run cov:actions
+              env:
+                  LV1_REFRESHTOKEN: ${{ secrets.LV1_REFRESHTOKEN }}
+                  UBI_USER: ${{ secrets.UBI_USER }}
+                  UBI_PW: ${{ secrets.UBI_PW }}
+                  TM_ID: ${{ secrets.TM_ID }}
+
+            - name: Upload coverage to Codecov
+              uses: codecov/codecov-action@v1
+
+            - name: Run codechecks
+              run: npx codechecks
+              env:
+                  CC_SECRET: ${{ secrets.CC_SECRET }}
+
+            - name: Build docs
+              run: npm run doc:html
+
+            - name: Deploy draft to Netlify
+              if: ${{ github.event_name == 'push' || github.event_name == 'pull_request' }}
+              uses: South-Paw/action-netlify-deploy@v1.0.4
+              with:
+                  github-token: ${{ secrets.GITHUB_TOKEN }}
+                  netlify-auth-token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+                  netlify-site-id: ${{ secrets.NETLIFY_SITE_ID }}
+                  build-dir: './build/docs'
+                  draft: true
+                  comment-on-commit: true
+
+            - name: Publish to netlify
+              if: ${{ github.event_name == 'release' }}
+              uses: South-Paw/action-netlify-deploy@v1.0.4
+              with:
+                  github-token: ${{ secrets.GITHUB_TOKEN }}
+                  netlify-auth-token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+                  netlify-site-id: ${{ secrets.NETLIFY_SITE_ID }}
+                  build-dir: './build/docs'
+                  comment-on-commit: true
