@@ -2,7 +2,8 @@ name: CI/CD
 
 on:
     release:
-        branches: -master
+        types:
+            - created
     push:
         branches:
             - master
@@ -21,12 +22,6 @@ jobs:
                 node-version: [12.x]
 
         steps:
-            - name: Explain why this job ran
-              uses: monacorp/action-name@master
-              with:
-                  entrypoint: /bin/echo
-                  args: The ${{ github.event_name }} event triggered this action.
-
             - name: Checkout repository
               uses: actions/checkout@v2
 
@@ -60,7 +55,7 @@ jobs:
 
             - name: Deploy to netlify
               if: ${{ github.event_name == 'push' || github.event_name == 'pull_request' }}
-            - uses: jsmrcaga/action-netlify-deploy@master
+              uses: jsmrcaga/action-netlify-deploy@master
               with:
                   NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
                   NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
@@ -69,7 +64,7 @@ jobs:
 
             - name: Deploy to netlify
               if: ${{ github.event_name == 'release' }}
-            - uses: jsmrcaga/action-netlify-deploy@master
+              uses: jsmrcaga/action-netlify-deploy@master
               with:
                   NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
                   NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
