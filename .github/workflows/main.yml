@@ -50,6 +50,11 @@ jobs:
             - name: Upload coverage to Codecov
               uses: codecov/codecov-action@v1
 
+            - name: Run codechecks
+              run: npx codechecks
+              env:
+                  CC_SECRET: ${{ secrets.CC_SECRET }}
+
             - name: Build docs
               run: npm run doc:html
 
@@ -72,4 +77,4 @@ jobs:
                   netlify-auth-token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
                   netlify-site-id: ${{ secrets.NETLIFY_SITE_ID }}
                   build-dir: './build/docs'
-                  comment-on-commit: true'
+                  comment-on-commit: true
