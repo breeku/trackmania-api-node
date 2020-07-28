@@ -43,6 +43,7 @@ jobs:
             - name: Run the tests and generate coverage report
               run: npm run cov:actions
               env:
+                  LV1_REFRESHTOKEN: ${{ secrets.LV1_REFRESHTOKEN }}
                   UBI_USER: ${{ secrets.UBI_USER }}
                   UBI_PW: ${{ secrets.UBI_PW }}
                   TM_ID: ${{ secrets.TM_ID }}
