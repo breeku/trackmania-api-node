@@ -2,9 +2,13 @@ name: CI/CD
 
 on:
     push:
-        branches: [master]
+        branches:
+        - master
+        - gh-actions
     pull_request:
-        branches: [master]
+        branches:
+        - master
+        - gh-actions
 
 jobs:
     build:
