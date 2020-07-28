@@ -37,7 +37,7 @@
     "clean": "trash build test",
     "prepare-release": "run-s reset test cov:check doc:html version doc:publish",
     "ts-coverage": "typescript-coverage-report",
-    "create:env": "node setup-env"
+    "create:env": "npm run build && node setup-env"
   },
   "scripts-info": {
     "info": "Display information about the package scripts",
