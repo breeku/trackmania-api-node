@@ -26,26 +26,30 @@ const login = async base64 => {
     const email = process.argv[2]
     const password = process.argv[3]
     const saveCredentials = process.argv[4] === 'true' ? true : false
+    try {
+        if (!email) throw new Error('missing email')
+        if (!password) throw new Error('missing password')
+        if (!saveCredentials) throw new Error('missing boolean for saving credentials')
 
-    if (email && password && saveCredentials !== null) {
         const base64 = Buffer.from(email + ':' + password).toString('base64')
-        try {
-            const data = await login(base64)
 
-            const vars = stringify({
-                LV1_ACCESSTOKEN: data.lv1accessToken,
-                LV1_REFRESHTOKEN: data.lv1refreshToken,
-                LV2_ACCESSTOKEN: data.lv2accessToken,
-                LV2_REFRESHTOKEN: data.lv2refreshToken,
-                UBI_USER: saveCredentials ? email : 'none',
-                UBI_PW: saveCredentials ? password : 'none',
-                TM_ID: data.accountId,
-            })
+        const data = await login(base64)
 
-            await fs.writeFile('./.env', vars)
-        } catch (e) {
-            console.warn(e)
-            return
-        }
+        const vars = stringify({
+            LV1_ACCESSTOKEN: data.lv1accessToken,
+            LV1_REFRESHTOKEN: data.lv1refreshToken,
+            LV2_ACCESSTOKEN: data.lv2accessToken,
+            LV2_REFRESHTOKEN: data.lv2refreshToken,
+            UBI_USER: saveCredentials ? email : 'none',
+            UBI_PW: saveCredentials ? password : 'none',
+            TM_ID: data.accountId,
+        })
+
+        await fs.writeFile('./.env', vars)
+
+        console.log('saved .env')
+    } catch (e) {
+        console.warn(e)
+        return
     }
 })()
