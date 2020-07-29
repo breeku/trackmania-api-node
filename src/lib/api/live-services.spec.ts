@@ -4,7 +4,12 @@ dotenv.config()
 import anyTest, { TestInterface } from 'ava'
 
 import { refreshTokens } from './auth'
-import { getSeasons, getTOTDs, getClubCampaigns, getGroupRecords } from './live-services'
+import {
+    getSeasons,
+    getTOTDs,
+    getClubCampaigns,
+    getMyGroupRecords,
+} from './live-services'
 
 const test = anyTest as TestInterface<{
     account: { accessToken: string; refreshToken: string; accountId: string }
@@ -35,7 +40,7 @@ test('List club campaigns', async t => {
 })
 
 test('Get group records', async t => {
-    const response = await getGroupRecords(
+    const response = await getMyGroupRecords(
         t.context.account.accessToken,
         '3987d489-03ae-4645-9903-8f7679c3a418',
     )
