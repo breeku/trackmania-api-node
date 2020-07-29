@@ -12,6 +12,7 @@ import {
     getMyPositionGroup,
     getTopPlayersGroup,
     getTopPlayersMap,
+    getTopLeadersMap,
 } from './live-services'
 
 const test = anyTest as TestInterface<{
@@ -70,6 +71,14 @@ test('Get top players from a map', async t => {
     const response = await getTopPlayersMap(
         t.context.account.accessToken,
         '3987d489-03ae-4645-9903-8f7679c3a418',
+        'XJ_JEjWGoAexDWe8qfaOjEcq5l8',
+    )
+    t.assert(response)
+})
+
+test('Get top leaders from a map', async t => {
+    const response = await getTopLeadersMap(
+        t.context.account.accessToken,
         'XJ_JEjWGoAexDWe8qfaOjEcq5l8',
     )
     t.assert(response)

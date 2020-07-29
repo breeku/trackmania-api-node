@@ -207,6 +207,35 @@ export const getTopPlayersMap = async (
     return response['data']
 }
 
+/**
+ * Get the top leaders of a map, with no restriction of a group like the others endpoints
+ *
+ * ## **Requires level 2 authentication**
+ *
+ * @category level 2
+ * @param string Access token
+ * @param string Group uid
+ * @param string Map uid
+ *
+ */
+export const getTopLeadersMap = async (
+    accessToken: string,
+    mapUid: string,
+): Promise<ImapTopPlayer> => {
+    const headers = setHeaders(accessToken, 'nadeo')
+    const response = await axios({
+        url:
+            urls.liveServices +
+            '/api/token/leaderboard/group/Personal_Best/map/' +
+            mapUid +
+            '/top',
+        method: 'GET',
+        headers,
+    })
+
+    return response['data']
+}
+
 interface IallSeasons {
     campaignList: campaign[]
     itemCount: number
