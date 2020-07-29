@@ -113,13 +113,37 @@ export const getClubCampaigns = async (
  * @param string Group uid
  *
  */
-export const getGroupRecords = async (
+export const getMyGroupRecords = async (
     accessToken: string,
     groupUid: string,
 ): Promise<IgroupRecords> => {
     const headers = setHeaders(accessToken, 'nadeo')
     const response = await axios({
         url: urls.liveServices + '/api/token/leaderboard/group/' + groupUid + '/map',
+        method: 'GET',
+        headers,
+    })
+
+    return response['data']
+}
+
+/**
+ * Get your position in a group (ex: overall ranking on Summer Season 2020 in world, country, etc.)
+ *
+ * ## **Requires level 2 authentication**
+ *
+ * @category level 2
+ * @param string Access token
+ * @param string Group uid
+ *
+ */
+export const getMyPositionGroup = async (
+    accessToken: string,
+    groupUid: string,
+): Promise<IpositionGroup> => {
+    const headers = setHeaders(accessToken, 'nadeo')
+    const response = await axios({
+        url: urls.liveServices + '/api/token/leaderboard/group/' + groupUid,
         method: 'GET',
         headers,
     })
@@ -252,4 +276,10 @@ type zone = {
 type ranking = {
     position: number
     length: number
+}
+
+interface IpositionGroup {
+    groupUid: string
+    sp: number
+    zones: zone[]
 }
