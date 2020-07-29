@@ -67,6 +67,7 @@
   "devDependencies": {
     "@bitjson/npm-scripts-info": "^1.0.0",
     "@istanbuljs/nyc-config-typescript": "^1.0.1",
+    "@types/jwt-decode": "^2.2.1",
     "ava": "3.10.1",
     "codecov": "^3.7.2",
     "cz-conventional-changelog": "^3.2.0",

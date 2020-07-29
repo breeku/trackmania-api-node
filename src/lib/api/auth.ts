@@ -36,9 +36,9 @@ export const loginTrackmaniaUbi = async (ticket: string): Promise<IloginTrackman
         method: 'POST',
         headers,
     })
-    const { data } = response
-    const decoded = jwt_decode(data['accessToken'])
-    const result = { ...data, accountId: decoded.sub, username: decoded.aun }
+    const tokens: Itokens = response['data']
+    const decoded: jwt = jwt_decode(tokens['accessToken'])
+    const result = { ...tokens, accountId: decoded.sub, username: decoded.aun }
 
     return result
 }
@@ -61,9 +61,9 @@ export const loginTrackmaniaNadeo = async (
         data: JSON.stringify({ audience: targetAPI }),
         headers,
     })
-    const { data } = response
-    const decoded = jwt_decode(data['accessToken'])
-    const result = { ...data, accountId: decoded.sub, username: decoded.aun }
+    const tokens: Itokens = response['data']
+    const decoded: jwt = jwt_decode(tokens['accessToken'])
+    const result = { ...tokens, accountId: decoded.sub, username: decoded.aun }
 
     return result
 }
@@ -86,7 +86,7 @@ export const refreshTokens = async (refreshToken: string): Promise<Itokens> => {
     return response['data']
 }
 
-export interface IloginUbi {
+interface IloginUbi {
     platformType: string
     ticket: string
     twoFactorAuthenticationTicket: boolean
@@ -104,14 +104,19 @@ export interface IloginUbi {
     rememberMeTicket: null | string
 }
 
-export interface IloginTrackmania {
+interface IloginTrackmania {
     accessToken: string
     refreshToken: string
     accountId: string
     username: string
 }
 
-export interface Itokens {
+interface Itokens {
     accessToken: string
     refreshToken: string
+}
+
+/** @internal */
+type jwt = {
+    [key: string]: string
 }
