@@ -4,7 +4,7 @@ dotenv.config()
 import anyTest, { TestInterface } from 'ava'
 
 import { refreshTokens } from './auth'
-import { getSeasons, GetTOTDs } from './live-services'
+import { getSeasons, getTOTDs, getClubCampaigns } from './live-services'
 
 const test = anyTest as TestInterface<{
     account: { accessToken: string; refreshToken: string; accountId: string }
@@ -24,7 +24,12 @@ test('Get all seasons', async t => {
     t.assert(response)
 })
 
-test.only('Get all TOTDs', async t => {
-    const response = await GetTOTDs(t.context.account.accessToken, 0, 1)
+test('Get all TOTDs', async t => {
+    const response = await getTOTDs(t.context.account.accessToken, 0, 1)
+    t.assert(response)
+})
+
+test('List club campaigns', async t => {
+    const response = await getClubCampaigns(t.context.account.accessToken, 0, 75)
     t.assert(response)
 })
