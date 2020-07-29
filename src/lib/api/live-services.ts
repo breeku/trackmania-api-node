@@ -103,6 +103,30 @@ export const getClubCampaigns = async (
     return response['data']
 }
 
+/**
+ * Returns your record in everymap of that group, and your position in each zone
+ *
+ * ## **Requires level 2 authentication**
+ *
+ * @category level 2
+ * @param string Access token
+ * @param string Group uid
+ *
+ */
+export const getGroupRecords = async (
+    accessToken: string,
+    groupUid: string,
+): Promise<IgroupRecords> => {
+    const headers = setHeaders(accessToken, 'nadeo')
+    const response = await axios({
+        url: urls.liveServices + '/api/token/leaderboard/group/' + groupUid + '/map',
+        method: 'GET',
+        headers,
+    })
+
+    return response['data']
+}
+
 interface IallSeasons {
     campaignList: campaign[]
     itemCount: number
@@ -206,4 +230,26 @@ type clubCampaign = {
     name: string
     campaign: campaign
     popularityLevel: number
+}
+
+interface IgroupRecords {
+    [key: string]: record
+}
+
+type record = {
+    groupUid: '3987d489-03ae-4645-9903-8f7679c3a418'
+    mapUid: '0fJFNOS8ZzfDA6fJQrr5JU0JIom'
+    score: 47952
+    zones: zone[]
+}
+
+type zone = {
+    zoneId: string
+    zoneName: string
+    ranking: ranking
+}
+
+type ranking = {
+    position: number
+    length: number
 }
