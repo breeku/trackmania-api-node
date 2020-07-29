@@ -9,6 +9,7 @@ on:
             - master
             - gh-actions
     pull_request:
+        types: [review_requested, ready_for_review]
         branches:
             - master
             - gh-actions
