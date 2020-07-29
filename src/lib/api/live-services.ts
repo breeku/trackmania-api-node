@@ -175,6 +175,38 @@ export const getTopPlayersGroup = async (
     return response['data']
 }
 
+/**
+ * Obtain the top leaders on a specific map
+ *
+ * ## **Requires level 2 authentication**
+ *
+ * @category level 2
+ * @param string Access token
+ * @param string Group uid
+ * @param string Map uid
+ *
+ */
+export const getTopPlayersMap = async (
+    accessToken: string,
+    groupUid: string,
+    mapUid: string,
+): Promise<ImapTopPlayer> => {
+    const headers = setHeaders(accessToken, 'nadeo')
+    const response = await axios({
+        url:
+            urls.liveServices +
+            '/api/token/leaderboard/group/' +
+            groupUid +
+            '/map/' +
+            mapUid +
+            '/top',
+        method: 'GET',
+        headers,
+    })
+
+    return response['data']
+}
+
 interface IallSeasons {
     campaignList: campaign[]
     itemCount: number
@@ -325,4 +357,10 @@ type top = {
     zoneName: string
     position: number
     sp: string
+}
+
+interface ImapTopPlayer {
+    groupUid: string
+    mapUid: string
+    tops: tops[]
 }
