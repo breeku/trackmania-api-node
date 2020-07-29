@@ -86,7 +86,7 @@ export const refreshTokens = async (refreshToken: string): Promise<Itokens> => {
     return response['data']
 }
 
-interface IloginUbi {
+export interface IloginUbi {
     platformType: string
     ticket: string
     twoFactorAuthenticationTicket: boolean
@@ -104,14 +104,14 @@ interface IloginUbi {
     rememberMeTicket: null | string
 }
 
-interface IloginTrackmania {
+export interface IloginTrackmania {
     accessToken: string
     refreshToken: string
     accountId: string
     username: string
 }
 
-interface Itokens {
+export interface Itokens {
     accessToken: string
     refreshToken: string
 }
