@@ -72,4 +72,4 @@ user trophies:
 
 # Contributing
 
-[**Guide**](./.github/contributing/guide.md)
+[**Guide**](https://github.com/breeku/trackmania-api-node/blob/master/.github/contributing/guide.md)

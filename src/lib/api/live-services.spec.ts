@@ -25,9 +25,9 @@ const test = anyTest as TestInterface<{
 }>
 
 test.before(async t => {
-    const accountId = process.env.TM_ID
+    const accountId = process.env.TM_ID as string
     const { accessToken, refreshToken } = await refreshTokens(
-        process.env.LV2_REFRESHTOKEN,
+        process.env.LV2_REFRESHTOKEN as string,
     ) // probably should try if the accesstoken is expired, then refresh and inform the dev
 
     t.context.account = { accessToken, refreshToken, accountId }
