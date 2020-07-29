@@ -16,6 +16,7 @@ import {
     getSurroundingPlayersMap,
     getClubRooms,
     getArcadeRooms,
+    getClubs,
 } from './live-services'
 
 const test = anyTest as TestInterface<{
@@ -102,5 +103,10 @@ test('Get club rooms', async t => {
 
 test('Get arcade rooms', async t => {
     const response = await getArcadeRooms(t.context.account.accessToken)
+    t.assert(response)
+})
+
+test('Get clubs', async t => {
+    const response = await getClubs(t.context.account.accessToken)
     t.assert(response)
 })

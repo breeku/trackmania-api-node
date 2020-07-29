@@ -322,6 +322,37 @@ export const getArcadeRooms = async (accessToken: string): Promise<IarcadeRooms>
     return response['data']
 }
 
+/**
+ * List all the clubs in the club section
+ *
+ * ## **Requires level 2 authentication**
+ *
+ * @category level 2
+ * @param string Access token
+ * @param number Offset (default = 0)
+ * @param number Length (default = 90)
+ *
+ */
+export const getClubs = async (
+    accessToken: string,
+    offset: number = 0,
+    length: number = 90,
+): Promise<Iclubs> => {
+    const headers = setHeaders(accessToken, 'nadeo')
+    const response = await axios({
+        url:
+            urls.liveServices +
+            '/api/token/club/mine?offset=' +
+            offset +
+            '&length=' +
+            length,
+        method: 'GET',
+        headers,
+    })
+
+    return response['data']
+}
+
 interface IallSeasons {
     campaignList: campaign[]
     itemCount: number
@@ -539,4 +570,10 @@ type timeSlot = {
     relativeStart: number
     relativeEnd: number
     mediaUrl: string
+}
+
+interface Iclubs {
+    clubList: unknown[]
+    maxPage: number
+    clubCount: number
 }
