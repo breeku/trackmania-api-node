@@ -201,7 +201,7 @@ interface Iseason {
     gameModeCustomData: string
     isOfficial: boolean
     name: string
-    recordScore: string
+    recordScoreType: string
     seasonId: string
     seasonMapList: seasonMap[]
 }

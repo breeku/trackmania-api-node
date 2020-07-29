@@ -2,8 +2,7 @@ name: CI/CD
 
 on:
     release:
-        types:
-            - created
+        types: [published]
     push:
         branches:
             - master
@@ -57,7 +56,7 @@ jobs:
               run: npm run doc:html
 
             - name: Deploy draft to Netlify
-              if: ${{ github.event_name == 'pull_request' }}
+              if: ${{ github.event_name == 'pull_request' || github.event_name == 'push' }}
               uses: South-Paw/action-netlify-deploy@v1.0.4
               with:
                   github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -68,7 +67,7 @@ jobs:
                   comment-on-commit: true
 
             - name: Publish to netlify
-              if: ${{ github.event_name == 'push' }}
+              if: ${{ github.event_name == 'release' }}
               uses: South-Paw/action-netlify-deploy@v1.0.4
               with:
                   github-token: ${{ secrets.GITHUB_TOKEN }}
