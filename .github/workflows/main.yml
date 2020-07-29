@@ -9,6 +9,7 @@ on:
             - master
             - gh-actions
     pull_request:
+        types: [review_requested, ready_for_review]
         branches:
             - master
             - gh-actions
@@ -44,6 +45,7 @@ jobs:
               run: npm run cov:actions
               env:
                   LV1_REFRESHTOKEN: ${{ secrets.LV1_REFRESHTOKEN }}
+                  LV2_REFRESHTOKEN: ${{ secrets.LV2_REFRESHTOKEN }}
                   UBI_USER: ${{ secrets.UBI_USER }}
                   UBI_PW: ${{ secrets.UBI_PW }}
                   TM_ID: ${{ secrets.TM_ID }}
