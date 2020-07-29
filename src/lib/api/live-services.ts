@@ -28,7 +28,36 @@ export const getSeasons = async (
         headers,
     })
 
-    return response['data'] as IallSeasons
+    return response['data']
+}
+
+/**
+ * Obtain all the track of the days, with their respective mapUid and seasonUid
+ *
+ * ## **Requires level 2 authentication**
+ *
+ * @category level 2
+ * @param string Access token
+ *
+ */
+export const GetTOTDs = async (
+    accessToken: string,
+    offset: number,
+    length: number,
+): Promise<TOTDs> => {
+    const headers = setHeaders(accessToken, 'nadeo')
+    const response = await axios({
+        url:
+            urls.liveServices +
+            '/api/token/campaign/month?offset=' +
+            offset +
+            '&length=' +
+            length,
+        method: 'GET',
+        headers,
+    })
+
+    return response['data']
 }
 
 interface IallSeasons {
@@ -42,7 +71,7 @@ type campaign = {
     name: string
     color: string
     useCase: number
-    clubId: null | string // might also be a number...
+    clubId: unknown
     leaderboardGroupUid: string
     publicationTimestamp: number
     publishedDate: number
@@ -89,4 +118,28 @@ type media = {
     popUpBackgroundUrl: string
     popUpImageUrl: string
     liveButtonBackgroundUrl: string
+}
+
+interface TOTDs {
+    monthList: month[]
+    itemCount: number
+}
+
+type month = {
+    year: number
+    month: number
+    lastDay: number
+    days: day[]
+    media: media
+}
+
+type day = {
+    campaignId: number
+    mapUid: string
+    day: number
+    monthDay: number
+    seasonUid: string
+    relativeStart: number
+    relativeEnd: number
+    leaderboardGroup: unknown
 }
