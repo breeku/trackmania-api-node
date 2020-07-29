@@ -176,7 +176,7 @@ export const getTopPlayersGroup = async (
 }
 
 /**
- * Obtain the top leaders on a specific map
+ * Obtain the top leaders on a specific map from a specific group
  *
  * ## **Requires level 2 authentication**
  *
@@ -186,7 +186,7 @@ export const getTopPlayersGroup = async (
  * @param string Map uid
  *
  */
-export const getTopPlayersMap = async (
+export const getTopGroupPlayersMap = async (
     accessToken: string,
     groupUid: string,
     mapUid: string,
@@ -218,7 +218,7 @@ export const getTopPlayersMap = async (
  * @param string Map uid
  *
  */
-export const getTopLeadersMap = async (
+export const getTopPlayersMap = async (
     accessToken: string,
     mapUid: string,
 ): Promise<ImapTopPlayer> => {
