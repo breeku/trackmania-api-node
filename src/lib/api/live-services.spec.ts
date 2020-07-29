@@ -10,6 +10,7 @@ import {
     getClubCampaigns,
     getMyGroupRecords,
     getMyPositionGroup,
+    getTopPlayersGroup,
 } from './live-services'
 
 const test = anyTest as TestInterface<{
@@ -50,6 +51,14 @@ test('Get my group records', async t => {
 
 test('Get my position in a group', async t => {
     const response = await getMyPositionGroup(
+        t.context.account.accessToken,
+        '3987d489-03ae-4645-9903-8f7679c3a418',
+    )
+    t.assert(response)
+})
+
+test('Get top players from a group', async t => {
+    const response = await getTopPlayersGroup(
         t.context.account.accessToken,
         '3987d489-03ae-4645-9903-8f7679c3a418',
     )

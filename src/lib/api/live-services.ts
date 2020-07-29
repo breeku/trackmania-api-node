@@ -151,6 +151,30 @@ export const getMyPositionGroup = async (
     return response['data']
 }
 
+/**
+ * Get the top leaders on a group (ex: top rankings on Summer Season 2020 in world, country, etc.)
+ *
+ * ## **Requires level 2 authentication**
+ *
+ * @category level 2
+ * @param string Access token
+ * @param string Group uid
+ *
+ */
+export const getTopPlayersGroup = async (
+    accessToken: string,
+    groupUid: string,
+): Promise<IgroupTopPlayers> => {
+    const headers = setHeaders(accessToken, 'nadeo')
+    const response = await axios({
+        url: urls.liveServices + '/api/token/leaderboard/group/' + groupUid + '/top',
+        method: 'GET',
+        headers,
+    })
+
+    return response['data']
+}
+
 interface IallSeasons {
     campaignList: campaign[]
     itemCount: number
@@ -282,4 +306,23 @@ interface IpositionGroup {
     groupUid: string
     sp: number
     zones: zone[]
+}
+
+interface IgroupTopPlayers {
+    groupUid: string
+    tops: tops[]
+}
+
+type tops = {
+    zoneId: string
+    zoneName: string
+    top: top[]
+}
+
+type top = {
+    accountId: string
+    zoneId: string
+    zoneName: string
+    position: number
+    sp: string
 }
