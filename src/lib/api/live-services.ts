@@ -388,7 +388,7 @@ export const getClubMembers = async (
     return response['data']
 }
 
-interface IallSeasons {
+export interface IallSeasons {
     campaignList: campaign[]
     itemCount: number
 }
@@ -448,7 +448,7 @@ type media = {
     liveButtonBackgroundUrl: string
 }
 
-interface ITOTDs {
+export interface ITOTDs {
     monthList: month[]
     itemCount: number
 }
@@ -472,7 +472,7 @@ type day = {
     leaderboardGroup: unknown
 }
 
-interface IclubCampaigns {
+export interface IclubCampaigns {
     clubCampaignList: clubCampaign[]
     maxPage: number
     itemCount: number
@@ -493,7 +493,7 @@ type clubCampaign = {
     popularityLevel: number
 }
 
-interface IgroupRecords {
+export interface IgroupRecords {
     [key: string]: record
 }
 
@@ -515,13 +515,13 @@ type ranking = {
     length: number
 }
 
-interface IpositionGroup {
+export interface IpositionGroup {
     groupUid: string
     sp: number
     zones: zone[]
 }
 
-interface IgroupTopPlayers {
+export interface IgroupTopPlayers {
     groupUid: string
     tops: tops[]
 }
@@ -540,13 +540,13 @@ type top = {
     sp: string
 }
 
-interface ImapTopPlayer {
+export interface ImapTopPlayer {
     groupUid: string
     mapUid: string
     tops: tops[]
 }
 
-interface IclubRooms {
+export interface IclubRooms {
     clubRoomList: clubRoom[]
     maxPage: number
     itemCount: number
@@ -588,7 +588,7 @@ type scriptSettings = {
     }
 }
 
-interface IarcadeRooms {
+export interface IarcadeRooms {
     uid: string
     name: string
     playerCount: number
@@ -607,13 +607,13 @@ type timeSlot = {
     mediaUrl: string
 }
 
-interface Iclubs {
+export interface Iclubs {
     clubList: unknown[]
     maxPage: number
     clubCount: number
 }
 
-interface IclubMembers {
+export interface IclubMembers {
     clubMemberList: clubMember[]
     maxPage: number
     itemCount: number

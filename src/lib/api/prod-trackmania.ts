@@ -172,7 +172,7 @@ export const getMapRecords = async (
     return response['data']
 }
 
-interface ImapRecords {
+export interface ImapRecords {
     accountId: string
     filename: string
     gameMode: string
@@ -193,7 +193,7 @@ type recordScore = {
     time: number
 }
 
-interface Iseason {
+export interface Iseason {
     creationTimestamp: string
     creatorId: string
     endTimestamp: string
@@ -211,7 +211,7 @@ type seasonMap = {
     timestamp: string
 }
 
-interface ItrophyCount {
+export interface ItrophyCount {
     accountId: string
     points: number
     t1Count: number
@@ -226,7 +226,7 @@ interface ItrophyCount {
     timestamp: string
 }
 
-interface Itrophies {
+export interface Itrophies {
     gain: {
         Solo: {
             SoloMedal: {
@@ -295,20 +295,20 @@ type allAuthorTiers = {
     t9Count?: number
 }
 
-interface IaccountZone {
+export interface IaccountZone {
     accountId: string
     timestamp: string
     zoneId: string
 }
 
-interface Izones {
+export interface Izones {
     icon: string
     name: string
     parentId: string
     zoneId: string
 }
 
-interface IclientConfig {
+export interface IclientConfig {
     keys: clientKey[]
     settings: clientSettings
 }
@@ -332,7 +332,7 @@ type clientSettings = {
     ClientIP: string
 }
 
-interface Iserver {
+export interface Iserver {
     accountId: string
     gameMode: string
     gameModeCustomData: string
