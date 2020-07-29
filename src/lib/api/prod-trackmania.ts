@@ -28,7 +28,7 @@ export const getClientConfig = async (): Promise<IclientConfig> => {
  * @param string Access token
  *
  */
-export const getZones = async (accessToken: string): Promise<ReadonlyArray<Izones>> => {
+export const getZones = async (accessToken: string): Promise<Izones[]> => {
     const headers = setHeaders(accessToken, 'nadeo')
     const response = await axios({
         url: urls.prodTrackmania + '/zones',
@@ -36,7 +36,7 @@ export const getZones = async (accessToken: string): Promise<ReadonlyArray<Izone
         headers,
     })
 
-    return response['data'] as ReadonlyArray<Izones>
+    return response['data'] as Izones[]
 }
 
 /**
@@ -161,7 +161,7 @@ export const getServer = async (accessToken: string, id: string) => {
 export const getMapRecords = async (
     accessToken: string,
     accountId: string,
-): Promise<ReadonlyArray<ImapRecords>> => {
+): Promise<ImapRecords[]> => {
     const headers = setHeaders(accessToken, 'nadeo')
     const response = await axios({
         url: urls.prodTrackmania + '/mapRecords/?accountIdList=' + accountId,
@@ -169,7 +169,7 @@ export const getMapRecords = async (
         headers,
     })
 
-    return response['data'] as ReadonlyArray<ImapRecords>
+    return response['data'] as ImapRecords[]
 }
 
 export interface ImapRecords {
@@ -242,7 +242,7 @@ export interface Itrophies {
                     allAuthor: allAuthor
                 }
                 SoloAll: {
-                    allAuthor: allAuthorT5
+                    allAuthor: allAuthorTiers // A guess
                 }
                 SoloBlack: {
                     allBronze: allBronze
@@ -284,14 +284,16 @@ export interface Itrophies {
 }
 
 type allBronze = { t1Count: number }
-
 type allSilver = { t2Count: number }
-
 type allGold = { t3Count: number }
-
 type allAuthor = { t4Count: number }
-
-type allAuthorT5 = { t5Count: number }
+type allAuthorTiers = {
+    t5Count: number
+    t6Count?: number
+    t7Count?: number
+    t8Count?: number
+    t9Count?: number
+}
 
 export interface IaccountZone {
     accountId: string
