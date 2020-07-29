@@ -69,3 +69,7 @@ user trophies:
   timestamp: '2020-07-25T15:50:50+00:00'
 }
 ```
+
+# Contributing
+
+[**Guide**](./.github/contributing/guide.md)

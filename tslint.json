@@ -16,7 +16,7 @@
         "readonly-keyword": false,
         "readonly-array": false,
         "no-let": true,
-        "no-object-mutation": true,
+        "no-object-mutation": [true, { "ignore-prefix": "t" }],
         "no-delete": true,
         "no-method-signature": true,
 
@@ -27,9 +27,9 @@
         "no-string-literal": false,
         "no-expression-statement": [
             true,
-            { "ignore-prefix": ["console.", "process.exit"] }
+            { "ignore-prefix": ["console.", "process.exit", "test", "dotenv", "t"] }
         ],
-        "no-if-statement": true
+        "no-if-statement": false
         /* end tslint-immutable rules */
     }
 }
