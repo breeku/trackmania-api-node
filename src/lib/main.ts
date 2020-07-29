@@ -26,6 +26,4 @@ export const setHeaders = (auth: string, type: string) =>
         ? { ...defaultHeaders, Authorization: 'Basic ' + auth }
         : type === 'ubi'
         ? { ...defaultHeaders, Authorization: 'ubi_v1 t=' + auth }
-        : type === 'nadeo'
-        ? { ...defaultHeaders, Authorization: 'nadeo_v1 t=' + auth }
-        : new Error('Unknown authorization type')
+        : type === 'nadeo' && { ...defaultHeaders, Authorization: 'nadeo_v1 t=' + auth }

@@ -20,9 +20,9 @@ const test = anyTest as TestInterface<{
 }>
 
 test.before(async t => {
-    const accountId = process.env.TM_ID
+    const accountId = process.env.TM_ID as string
     const { accessToken, refreshToken } = await refreshTokens(
-        process.env.LV1_REFRESHTOKEN,
+        process.env.LV1_REFRESHTOKEN as string,
     ) // probably should try if the accesstoken is expired, then refresh and inform the dev
 
     t.context.account = { accessToken, refreshToken, accountId }
@@ -67,8 +67,11 @@ test('Get season by ID', async t => {
     t.assert(response)
 })
 
-test.skip('Get server by ID', async t => {
-    const response = await getServer(t.context.account.accessToken, '123') // account ID?
+test('Get server by UID', async t => {
+    const response = await getServer(
+        t.context.account.accessToken,
+        'bc251924-d267-4702-b526-9ed4b950d729',
+    )
     t.assert(response)
 })
 
