@@ -353,6 +353,41 @@ export const getClubs = async (
     return response['data']
 }
 
+/**
+ * Obtain all the information about the members of a club
+ *
+ * ## **Requires level 2 authentication**
+ *
+ * @category level 2
+ * @param string Access token
+ * @param number Clubid
+ * @param number Offset (default = 0)
+ * @param number Length (default = 27)
+ *
+ */
+export const getClubMembers = async (
+    accessToken: string,
+    clubId: number,
+    offset: number = 0,
+    length: number = 27,
+): Promise<IclubMembers> => {
+    const headers = setHeaders(accessToken, 'nadeo')
+    const response = await axios({
+        url:
+            urls.liveServices +
+            '/api/token/club/' +
+            clubId +
+            '/member?offset=' +
+            offset +
+            '&length=' +
+            length,
+        method: 'GET',
+        headers,
+    })
+
+    return response['data']
+}
+
 interface IallSeasons {
     campaignList: campaign[]
     itemCount: number
@@ -576,4 +611,18 @@ interface Iclubs {
     clubList: unknown[]
     maxPage: number
     clubCount: number
+}
+
+interface IclubMembers {
+    clubMemberList: clubMember[]
+    maxPage: number
+    itemCount: number
+}
+
+type clubMember = {
+    accountId: string
+    role: string
+    creationTimestamp: number
+    creationDate: number
+    vip: boolean
 }
