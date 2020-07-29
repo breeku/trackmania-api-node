@@ -16,7 +16,7 @@ export const getClientConfig = async (): Promise<IclientConfig> => {
         method: 'GET',
     })
 
-    return response['data'] as IclientConfig
+    return response['data']
 }
 
 /**
@@ -36,7 +36,7 @@ export const getZones = async (accessToken: string): Promise<Izones[]> => {
         headers,
     })
 
-    return response['data'] as Izones[]
+    return response['data']
 }
 
 /**
@@ -60,7 +60,7 @@ export const getAccountZone = async (
         headers,
     })
 
-    return response['data'] as IaccountZone
+    return response['data']
 }
 
 /**
@@ -80,7 +80,7 @@ export const getTrophies = async (accessToken: string): Promise<Itrophies> => {
         headers,
     })
 
-    return response['data'] as Itrophies
+    return response['data']
 }
 
 /**
@@ -103,7 +103,7 @@ export const getTrophyCount = async (
         headers,
     })
 
-    return response['data'] as ItrophyCount
+    return response['data']
 }
 
 /**
@@ -124,7 +124,7 @@ export const getSeason = async (accessToken: string, uuid: string): Promise<Isea
         headers,
     })
 
-    return response['data'] as Iseason
+    return response['data']
 }
 
 /**
@@ -169,7 +169,7 @@ export const getMapRecords = async (
         headers,
     })
 
-    return response['data'] as ImapRecords[]
+    return response['data']
 }
 
 export interface ImapRecords {

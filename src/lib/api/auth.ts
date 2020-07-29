@@ -19,7 +19,7 @@ export const loginUbi = async (base64: string): Promise<IloginUbi> => {
         headers,
     })
 
-    return response['data'] as IloginUbi
+    return response['data']
 }
 
 /**
@@ -40,7 +40,7 @@ export const loginTrackmaniaUbi = async (ticket: string): Promise<IloginTrackman
     const decoded = jwt_decode(data['accessToken'])
     const result = { ...data, accountId: decoded.sub, username: decoded.aun }
 
-    return result as IloginTrackmania
+    return result
 }
 
 /**
@@ -65,7 +65,7 @@ export const loginTrackmaniaNadeo = async (
     const decoded = jwt_decode(data['accessToken'])
     const result = { ...data, accountId: decoded.sub, username: decoded.aun }
 
-    return result as IloginTrackmania
+    return result
 }
 
 /**
@@ -83,7 +83,7 @@ export const refreshTokens = async (refreshToken: string): Promise<Itokens> => {
         headers,
     })
 
-    return response['data'] as Itokens
+    return response['data']
 }
 
 export interface IloginUbi {
