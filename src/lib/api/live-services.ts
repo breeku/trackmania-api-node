@@ -276,7 +276,7 @@ export const getSurroundingPlayersMap = async (
  * @param string Order (default = 'DESC')
  *
  */
-export const getClubsRooms = async (
+export const getClubRooms = async (
     accessToken: string,
     offset: number = 0,
     length: number = 75,
@@ -295,6 +295,26 @@ export const getClubsRooms = async (
             sort +
             '&order=' +
             order,
+        method: 'GET',
+        headers,
+    })
+
+    return response['data']
+}
+
+/**
+ * Obtain the information about the current arcade room and the next room
+ *
+ * ## **Requires level 2 authentication**
+ *
+ * @category level 2
+ * @param string Access token
+ *
+ */
+export const getArcadeRooms = async (accessToken: string): Promise<IarcadeRooms> => {
+    const headers = setHeaders(accessToken, 'nadeo')
+    const response = await axios({
+        url: urls.liveServices + '/api/token/channel/officialhard',
         method: 'GET',
         headers,
     })
@@ -500,4 +520,23 @@ type scriptSettings = {
         value: string
         type: string
     }
+}
+
+interface IarcadeRooms {
+    uid: string
+    name: string
+    playerCount: number
+    currentTimeSlot: timeSlot
+    nextTimeSlot: timeSlot
+}
+
+type timeSlot = {
+    startTimestamp: number
+    endTimestamp: number
+    name: string
+    maps: string[]
+    currentMap: string
+    relativeStart: number
+    relativeEnd: number
+    mediaUrl: string
 }

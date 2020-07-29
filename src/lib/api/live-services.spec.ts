@@ -11,10 +11,11 @@ import {
     getMyGroupRecords,
     getMyPositionGroup,
     getTopPlayersGroup,
-    getTopLeadersMap,
+    getTopPlayersMap,
     getTopGroupPlayersMap,
     getSurroundingPlayersMap,
-    getClubsRooms,
+    getClubRooms,
+    getArcadeRooms,
 } from './live-services'
 
 const test = anyTest as TestInterface<{
@@ -79,7 +80,7 @@ test('Get top players from a group and a map', async t => {
 })
 
 test('Get top players from a map', async t => {
-    const response = await getTopLeadersMap(
+    const response = await getTopPlayersMap(
         t.context.account.accessToken,
         'XJ_JEjWGoAexDWe8qfaOjEcq5l8',
     )
@@ -95,6 +96,11 @@ test('Get surrounding players from a map', async t => {
 })
 
 test('Get club rooms', async t => {
-    const response = await getClubsRooms(t.context.account.accessToken)
+    const response = await getClubRooms(t.context.account.accessToken)
+    t.assert(response)
+})
+
+test('Get arcade rooms', async t => {
+    const response = await getArcadeRooms(t.context.account.accessToken)
     t.assert(response)
 })
