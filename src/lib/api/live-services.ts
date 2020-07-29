@@ -263,6 +263,45 @@ export const getSurroundingPlayersMap = async (
     return response['data']
 }
 
+/**
+ * This is used to obtain the clubs in the Live section of the game
+ *
+ * ## **Requires level 2 authentication**
+ *
+ * @category level 2
+ * @param string Access token
+ * @param number Offset (default = 0)
+ * @param number Length (default = 75)
+ * @param string Sort (default = 'popularity')
+ * @param string Order (default = 'DESC')
+ *
+ */
+export const getClubsRooms = async (
+    accessToken: string,
+    offset: number = 0,
+    length: number = 75,
+    sort: string = 'popularity',
+    order: string = 'DESC',
+): Promise<IclubRooms> => {
+    const headers = setHeaders(accessToken, 'nadeo')
+    const response = await axios({
+        url:
+            urls.liveServices +
+            '/api/token/club/room?offset=' +
+            offset +
+            '&length=' +
+            length +
+            '&sort=' +
+            sort +
+            '&order=' +
+            order,
+        method: 'GET',
+        headers,
+    })
+
+    return response['data']
+}
+
 interface IallSeasons {
     campaignList: campaign[]
     itemCount: number
@@ -419,4 +458,46 @@ interface ImapTopPlayer {
     groupUid: string
     mapUid: string
     tops: tops[]
+}
+
+interface IclubRooms {
+    clubRoomList: clubRoom[]
+    maxPage: number
+    itemCount: number
+}
+
+type clubRoom = {
+    id: number
+    clubId: number
+    nadeo: boolean
+    roomId: number
+    campaignId: unknown
+    playerServerLogin: unknown
+    activityId: number
+    mediaUrl: string
+    name: string
+    room: room
+    popularityLevel: number
+    creationTimestamp: number
+}
+
+type room = {
+    id: number
+    name: string
+    region: unknown
+    serverAccountId: string
+    maxPlayers: number
+    playerCount: number
+    maps: string[]
+    script: string
+    scriptSettings: scriptSettings
+}
+
+type scriptSettings = {
+    S_ForceLapsNb: { key: string; value: string; type: string }
+    S_DecoImageUrl_Screen16x9: {
+        key: string
+        value: string
+        type: string
+    }
 }

@@ -14,6 +14,7 @@ import {
     getTopLeadersMap,
     getTopGroupPlayersMap,
     getSurroundingPlayersMap,
+    getClubsRooms,
 } from './live-services'
 
 const test = anyTest as TestInterface<{
@@ -30,17 +31,17 @@ test.before(async t => {
 })
 
 test('Get all seasons', async t => {
-    const response = await getSeasons(t.context.account.accessToken, 0, 1)
+    const response = await getSeasons(t.context.account.accessToken)
     t.assert(response)
 })
 
 test('Get all TOTDs', async t => {
-    const response = await getTOTDs(t.context.account.accessToken, 0, 1)
+    const response = await getTOTDs(t.context.account.accessToken)
     t.assert(response)
 })
 
 test('List club campaigns', async t => {
-    const response = await getClubCampaigns(t.context.account.accessToken, 0, 75)
+    const response = await getClubCampaigns(t.context.account.accessToken)
     t.assert(response)
 })
 
@@ -90,5 +91,10 @@ test('Get surrounding players from a map', async t => {
         t.context.account.accessToken,
         'XJ_JEjWGoAexDWe8qfaOjEcq5l8',
     )
+    t.assert(response)
+})
+
+test('Get club rooms', async t => {
+    const response = await getClubsRooms(t.context.account.accessToken)
     t.assert(response)
 })
