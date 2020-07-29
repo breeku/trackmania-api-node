@@ -176,7 +176,7 @@ export const getTopPlayersGroup = async (
 }
 
 /**
- * Obtain the top leaders on a specific map from a specific group
+ * Obtain the top players on a specific map from a specific group
  *
  * ## **Requires level 2 authentication**
  *
@@ -208,13 +208,12 @@ export const getTopGroupPlayersMap = async (
 }
 
 /**
- * Get the top leaders of a map, with no restriction of a group like the others endpoints
+ * Get the top players of a map, with no restriction of a group like the others endpoints
  *
  * ## **Requires level 2 authentication**
  *
  * @category level 2
  * @param string Access token
- * @param string Group uid
  * @param string Map uid
  *
  */
@@ -229,6 +228,34 @@ export const getTopPlayersMap = async (
             '/api/token/leaderboard/group/Personal_Best/map/' +
             mapUid +
             '/top',
+        method: 'GET',
+        headers,
+    })
+
+    return response['data']
+}
+
+/**
+ * Get the surrounding players around your score on a map, with no restriction of a group like the others endpoints (this is used in that little leaderboard in game)
+ *
+ * ## **Requires level 2 authentication**
+ *
+ * @category level 2
+ * @param string Access token
+ * @param string Map uid
+ *
+ */
+export const getSurroundingPlayersMap = async (
+    accessToken: string,
+    mapUid: string,
+): Promise<ImapTopPlayer> => {
+    const headers = setHeaders(accessToken, 'nadeo')
+    const response = await axios({
+        url:
+            urls.liveServices +
+            '/api/token/leaderboard/group/Personal_Best/map/' +
+            mapUid +
+            '/surround/1/1',
         method: 'GET',
         headers,
     })

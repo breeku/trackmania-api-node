@@ -13,6 +13,7 @@ import {
     getTopPlayersGroup,
     getTopLeadersMap,
     getTopGroupPlayersMap,
+    getSurroundingPlayersMap,
 } from './live-services'
 
 const test = anyTest as TestInterface<{
@@ -67,7 +68,7 @@ test('Get top players from a group', async t => {
     t.assert(response)
 })
 
-test('Get top players from a map', async t => {
+test('Get top players from a group and a map', async t => {
     const response = await getTopGroupPlayersMap(
         t.context.account.accessToken,
         '3987d489-03ae-4645-9903-8f7679c3a418',
@@ -76,8 +77,16 @@ test('Get top players from a map', async t => {
     t.assert(response)
 })
 
-test('Get top leaders from a map', async t => {
+test('Get top players from a map', async t => {
     const response = await getTopLeadersMap(
+        t.context.account.accessToken,
+        'XJ_JEjWGoAexDWe8qfaOjEcq5l8',
+    )
+    t.assert(response)
+})
+
+test('Get surrounding players from a map', async t => {
+    const response = await getSurroundingPlayersMap(
         t.context.account.accessToken,
         'XJ_JEjWGoAexDWe8qfaOjEcq5l8',
     )
