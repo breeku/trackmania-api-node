@@ -26,7 +26,7 @@ export const getProfilesById = async (
     return response['data']
 }
 
-interface Iprofiles {
+export interface Iprofiles {
     profiles: profile[]
 }
 
