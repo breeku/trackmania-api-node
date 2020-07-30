@@ -172,7 +172,40 @@ export const getMapRecords = async (
     return response['data']
 }
 
-export interface ImapRecords {
+/**
+ * Get web identity based on account id
+ *
+ * ## **Requires level 1 authentication**
+ *
+ * @category level 1
+ * @param string Access token
+ * @param Array account ids
+ */
+export const getProfileIds = async (
+    accessToken: string,
+    accountIds: string[],
+): Promise<IwebIdentity[]> => {
+    const str = accountIds
+        .map((x, i) => {
+            if (i !== accountIds.length - 1) {
+                return x + '%'
+            } else {
+                return x
+            }
+        })
+        .join('')
+
+    const headers = setHeaders(accessToken, 'nadeo')
+    const response = await axios({
+        url: urls.prodTrackmania + '/webidentities/?accountIdList=' + str,
+        method: 'GET',
+        headers,
+    })
+
+    return response['data']
+}
+
+interface ImapRecords {
     accountId: string
     filename: string
     gameMode: string
@@ -181,7 +214,7 @@ export interface ImapRecords {
     medal: number
     recordScore: recordScore
     removed: boolean
-    scopeId: null | number | string
+    scopeId: unknown
     scope: string
     timestamp: string
     url: string
@@ -193,7 +226,7 @@ type recordScore = {
     time: number
 }
 
-export interface Iseason {
+interface Iseason {
     creationTimestamp: string
     creatorId: string
     endTimestamp: string
@@ -201,7 +234,7 @@ export interface Iseason {
     gameModeCustomData: string
     isOfficial: boolean
     name: string
-    recordScoreType: string
+    recordScore: string
     seasonId: string
     seasonMapList: seasonMap[]
 }
@@ -211,7 +244,7 @@ type seasonMap = {
     timestamp: string
 }
 
-export interface ItrophyCount {
+interface ItrophyCount {
     accountId: string
     points: number
     t1Count: number
@@ -226,7 +259,7 @@ export interface ItrophyCount {
     timestamp: string
 }
 
-export interface Itrophies {
+interface Itrophies {
     gain: {
         Solo: {
             SoloMedal: {
@@ -295,20 +328,20 @@ type allAuthorTiers = {
     t9Count?: number
 }
 
-export interface IaccountZone {
+interface IaccountZone {
     accountId: string
     timestamp: string
     zoneId: string
 }
 
-export interface Izones {
+interface Izones {
     icon: string
     name: string
     parentId: string
     zoneId: string
 }
 
-export interface IclientConfig {
+interface IclientConfig {
     keys: clientKey[]
     settings: clientSettings
 }
@@ -332,7 +365,7 @@ type clientSettings = {
     ClientIP: string
 }
 
-export interface Iserver {
+interface Iserver {
     accountId: string
     gameMode: string
     gameModeCustomData: string
@@ -345,4 +378,11 @@ export interface Iserver {
     port: number
     timestamp: string
     titleId: string
+}
+
+interface IwebIdentity {
+    accountId: string
+    provider: string
+    uid: string
+    timestamp: string
 }

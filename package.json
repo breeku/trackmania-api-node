@@ -19,14 +19,16 @@
     "fix:prettier": "prettier \"src/**/*.ts\" --write",
     "fix:tslint": "tslint --fix --project .",
     "test": "run-s build test:lint test:unit",
+    "test:ci": "run-s build test:lint test:unit-ci",
     "test:lint": "tslint --project . && prettier --write \"src/**/*.ts\"",
-    "test:unit": "nyc --silent ava --verbose",
+    "test:unit": "config:create && nyc --silent ava --verbose && config:reset",
+    "test:unit-ci": "config:create && nyc --silent ava && config:reset",
     "dev": "run-s clean build:main && run-p \"build:main -- -w\\",
-    "watch": "run-s clean build:main && run-p \"build:main -- -w\" \"test:unit -- --watch\"",
+    "watch": "run-s clean build:main && run-p \"build:main -- -w\" \"nyc --silent ava --verbose --watch\"",
     "cov": "run-s build test:unit cov:html && open-cli coverage/index.html",
     "cov:html": "nyc report --reporter=html",
     "cov:send": "nyc report --reporter=lcov && codecov",
-    "cov:actions": "run-s build test && nyc report --reporter=lcov",
+    "cov:actions": "run-s build test:ci && nyc report --reporter=lcov",
     "cov:check": "nyc report && nyc check-coverage --lines 100 --functions 100 --branches 100",
     "cov:typescript": "typescript-coverage-report",
     "doc": "run-s doc:html && open-cli build/docs/index.html",
@@ -38,7 +40,9 @@
     "clean": "trash build test",
     "prepare-release": "run-s reset test cov:check doc:html version doc:publish",
     "ts-coverage": "typescript-coverage-report",
-    "create:env": "npm run build && node setup-env"
+    "config:create": "npm run build && node test-helper CREATE",
+    "config:reset": "npm run build && node test-helper RESET",
+    "config:check": "npm run build && node test-helper CHECK"
   },
   "scripts-info": {
     "info": "Display information about the package scripts",
@@ -55,7 +59,7 @@
     "prepare-release": "One-step: clean, build, test, publish docs, and prep a release",
     "test file": "npx ava build/main/**/FILE.spec.js --verbose",
     "test by title": "npx ava build/main/**/*.spec.js --match='FIRST*LAST'",
-    "create:env": "Create required .env for tests. Arg: email password (true or false if you want to save email and password, if you dont auth.spec will fail)"
+    "config": "Create required json for tests"
   },
   "engines": {
     "node": ">=8.9"
@@ -74,6 +78,7 @@
     "dotenv": "^8.2.0",
     "envfile": "^6.11.0",
     "gh-pages": "^3.1.0",
+    "husky": "^4.2.5",
     "npm-run-all": "^4.1.5",
     "nyc": "^15.1.0",
     "open-cli": "^6.0.1",
@@ -88,7 +93,6 @@
     "typescript-coverage-report": "^0.1.3"
   },
   "ava": {
-    "failFast": true,
     "files": [
       "build/main/**/*.spec.js"
     ],
@@ -108,5 +112,11 @@
     "exclude": [
       "**/*.spec.js"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run config:check",
+      "pre-push": "npm run config:check"
+    }
   }
 }

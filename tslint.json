@@ -26,10 +26,8 @@
         "no-class": true,
         "no-mixed-interface": true,
         "no-string-literal": false,
-        "no-expression-statement": [
-            true,
-            { "ignore-prefix": ["console.", "process.exit", "test", "dotenv", "t"] }
-        ],
+        "no-expression-statement": false,
+
         "no-if-statement": false
         /* end tslint-immutable rules */
     }
