@@ -13,6 +13,7 @@ const login = async base64 => {
         ubiTokens.accessToken,
         'NadeoLiveServices',
     ) // login to trackmania nadeoliveservices, level 2
+    console.log('logged in')
     return {
         ticket,
         lv1accessToken: ubiTokens.accessToken,
@@ -34,6 +35,7 @@ const login = async base64 => {
         const credentials = JSON.stringify(await login(base64))
 
         await fs.writeFile('./src/config/test.json', credentials)
+        console.log('writed file')
     } else if (mode === 'RESET') {
         await fs.writeFile(
             './src/config/test.json',
@@ -44,6 +46,7 @@ const login = async base64 => {
                 accountId: null,
             }),
         )
+        console.log('reset file')
     } else if (mode === 'CHECK') {
         const data = JSON.parse(await fs.readFile('./src/config/test.json', 'utf8'))
         if (
