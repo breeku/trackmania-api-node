@@ -20,14 +20,16 @@ import {
     getClubMembers,
 } from './live-services'
 
+import credentials from '../../config/test.json'
+
 const test = anyTest as TestInterface<{
-    account: { accessToken: string; refreshToken: string; accountId: string }
+    account: { accessToken: string; refreshToken: string; accountId: unknown }
 }>
 
 test.before(async t => {
-    const accountId = process.env.TM_ID as string
+    const accountId = credentials.accountId
     const { accessToken, refreshToken } = await refreshTokens(
-        process.env.LV2_REFRESHTOKEN as string,
+        (credentials.lv2refreshToken as unknown) as string,
     ) // probably should try if the accesstoken is expired, then refresh and inform the dev
 
     t.context.account = { accessToken, refreshToken, accountId }
