@@ -172,6 +172,39 @@ export const getMapRecords = async (
     return response['data']
 }
 
+/**
+ * Get web identity based on account id
+ *
+ * ## **Requires level 1 authentication**
+ *
+ * @category level 1
+ * @param string Access token
+ * @param Array account ids
+ */
+export const getProfileIds = async (
+    accessToken: string,
+    accountIds: string[],
+): Promise<IwebIdentity[]> => {
+    const str = accountIds
+        .map((x, i) => {
+            if (i !== accountIds.length - 1) {
+                return x + '%'
+            } else {
+                return x
+            }
+        })
+        .join('')
+
+    const headers = setHeaders(accessToken, 'nadeo')
+    const response = await axios({
+        url: urls.prodTrackmania + '/webidentities/?accountIdList=' + str,
+        method: 'GET',
+        headers,
+    })
+
+    return response['data']
+}
+
 export interface ImapRecords {
     accountId: string
     filename: string
@@ -181,7 +214,7 @@ export interface ImapRecords {
     medal: number
     recordScore: recordScore
     removed: boolean
-    scopeId: null | number | string
+    scopeId: unknown
     scope: string
     timestamp: string
     url: string
@@ -201,7 +234,7 @@ export interface Iseason {
     gameModeCustomData: string
     isOfficial: boolean
     name: string
-    recordScoreType: string
+    recordScore: string
     seasonId: string
     seasonMapList: seasonMap[]
 }
@@ -345,4 +378,11 @@ export interface Iserver {
     port: number
     timestamp: string
     titleId: string
+}
+
+export interface IwebIdentity {
+    accountId: string
+    provider: string
+    uid: string
+    timestamp: string
 }

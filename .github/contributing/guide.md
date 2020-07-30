@@ -8,10 +8,13 @@ After that's done, go ahead and do `npm i` in the project root.
 
 Now, if you want to be able to run test's, you will need to get proper enviroment variables.
 
-Do `npm run create:env variable1 variable2 variable3`,
-where **variable1** is your ubisoft email, **variable2** is your password and **variable3** is boolean for if you want to save the email and pass to .env. This is required to run auth.spec test.
+Create `.env` in project root and add `EMAIL=your email` and `PASSWORD=your password`.
 
-Then to watch and rebuild the project on save, and rerun relevant tests, do `npm run watch`
+Then do `npm run config:create` to create temporary credentials for the test to run from.
+
+Now you can watch and rebuild the project on save, and rerun relevant tests, do `npm run watch`
+
+Project has prehooks for commit and push to reset the test credentials file, you can do that manually by `npm run config:reset`
 
 If anything's unclear, package.json has the npm scripts and information about them.
 

@@ -498,9 +498,9 @@ export interface IgroupRecords {
 }
 
 type record = {
-    groupUid: '3987d489-03ae-4645-9903-8f7679c3a418'
-    mapUid: '0fJFNOS8ZzfDA6fJQrr5JU0JIom'
-    score: 47952
+    groupUid: string
+    mapUid: string
+    score: number
     zones: zone[]
 }
 

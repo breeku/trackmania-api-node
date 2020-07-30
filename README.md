@@ -4,8 +4,6 @@
 
 ### [Converting this repo to a npm module](https://github.com/The-Firexx/trackmania2020apidocumentation)
 
-**In early development!**
-
 > This API is not intended to be used outside of the game!!
 >
 > Be aware that Nadeo can change the API without even warning us, since the API is intended only to be used in game, so don't except any support for them, and don't try to make anything serious out of this

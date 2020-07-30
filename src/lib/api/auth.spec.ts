@@ -8,8 +8,8 @@ import { loginUbi, loginTrackmaniaUbi, loginTrackmaniaNadeo, refreshTokens } fro
 const test = anyTest as TestInterface<{ credentials: string }>
 
 test.before(async t => {
-    const email = process.env.UBI_USER
-    const password = process.env.UBI_PW
+    const email = process.env.EMAIL
+    const password = process.env.PASSWORD
     if (email !== 'none' && password !== 'none') {
         t.context.credentials = Buffer.from(email + ':' + password).toString('base64')
     }
