@@ -17,9 +17,7 @@ const login = async base64 => {
     return {
         ticket,
         lv1accessToken: ubiTokens.accessToken,
-        lv1refreshToken: ubiTokens.refreshToken,
         lv2accessToken: nadeoTokens.accessToken,
-        lv2refreshToken: nadeoTokens.refreshToken,
         accountId: nadeoTokens.accountId,
     }
 }
@@ -41,8 +39,8 @@ const login = async base64 => {
             './src/config/test.json',
             JSON.stringify({
                 ticket: null,
-                lv1refreshToken: null,
-                lv2refreshToken: null,
+                lv1accessToken: null,
+                lv2accessToken: null,
                 accountId: null,
             }),
         )

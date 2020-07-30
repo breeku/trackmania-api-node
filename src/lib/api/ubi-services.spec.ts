@@ -12,8 +12,8 @@ const test = anyTest as TestInterface<{
 }>
 
 test.before(async t => {
-    const ticket = (credentials.ticket as unknown) as string
-    t.context.account = { ticket }
+    const { ticket } = credentials as { ticket: null | string }
+    if (ticket) t.context.account = { ticket }
 })
 
 test.only('Get profile', async t => {
