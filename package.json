@@ -22,7 +22,7 @@
     "test:ci": "run-s build test:lint test:unit-ci",
     "test:lint": "tslint --project . && prettier --write \"src/**/*.ts\"",
     "test:unit": "npm run config:create && nyc --silent ava --verbose && npm run config:reset",
-    "test:unit-ci": "config:create && nyc --silent ava && config:reset",
+    "test:unit-ci": "npm run config:create && nyc --silent ava && npm run config:reset",
     "dev": "run-s clean build:main && run-p \"build:main -- -w\\",
     "watch": "run-s clean build:main && run-p \"build:main -- -w\" \"nyc --silent ava --verbose --watch\"",
     "cov": "run-s build test:unit cov:html && open-cli coverage/index.html",
