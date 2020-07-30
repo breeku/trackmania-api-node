@@ -3,22 +3,24 @@ import axios from 'axios'
 import { setHeaders } from '../main'
 
 /**
- * Get more info about the users
+ * Get more info about profiles
  *
  * ## **Requires level 0 authentication**
  *
  * @category level 1
  * @param string Ticket
- * @param string Profile id
+ * @param Array Profile ids
  *
  */
 export const getProfilesById = async (
     accessToken: string,
-    profileId: string,
+    profileIds: string[],
 ): Promise<Iprofiles> => {
     const headers = setHeaders(accessToken, 'ubi')
     const response = await axios({
-        url: 'https://public-ubiservices.ubi.com/v3/profiles?profileId=' + profileId,
+        url:
+            'https://public-ubiservices.ubi.com/v3/profiles?profileId=' +
+            profileIds.join(),
         method: 'GET',
         headers,
     })

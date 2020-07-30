@@ -173,7 +173,7 @@ export const getMapRecords = async (
 }
 
 /**
- * Get web identity based on account id
+ * Get web identity based on account ids
  *
  * ## **Requires level 1 authentication**
  *
@@ -181,14 +181,14 @@ export const getMapRecords = async (
  * @param string Access token
  * @param Array account ids
  */
-export const getProfileIds = async (
+export const getProfiles = async (
     accessToken: string,
     accountIds: string[],
 ): Promise<IwebIdentity[]> => {
     const str = accountIds
         .map((x, i) => {
             if (i !== accountIds.length - 1) {
-                return x + '%'
+                return x + '%2c'
             } else {
                 return x
             }

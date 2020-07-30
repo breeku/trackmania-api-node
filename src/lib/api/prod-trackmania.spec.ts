@@ -12,7 +12,7 @@ import {
     getSeason,
     getServer,
     getMapRecords,
-    getProfileIds,
+    getProfiles,
 } from './prod-trackmania'
 
 import credentials from '../../config/test.json'
@@ -87,10 +87,15 @@ test('Get account map records', async t => {
 })
 
 test('Get profile ids', async t => {
-    const response = await getProfileIds(t.context.account.lv1accessToken, [
-        '7d7fe36f-fbec-4246-923a-67d847c4a429',
-        '2cc926568e-167d-4eca-a271-f013cadefc7f',
-        '2c19597098-7c7a-49bc-8311-a6f10d5fa7a2',
+    const response = await getProfiles(t.context.account.lv1accessToken, [
+        'a9cbdeff-daa3-4bc2-998c-b2838183fb97',
+        '531a9861-c024-4063-9b29-14601350b899',
+        '2ed0997d-62bc-4a53-8c09-ffb793382ea2',
+        '58278714-fbe5-4bb1-960c-3ad278bb7ecc',
+        'aa4e375f-d23e-4915-8d53-8b3307e06764',
+        'b67bedd1-7d2f-4861-86c4-dae8c1583ace',
+        'f6a1ceb1-1928-4043-9df8-2c5465e65eaa',
+        '95abee92-1174-45e3-8967-bc46d2e6afe3',
     ])
     t.assert(response)
 })

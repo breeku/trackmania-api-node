@@ -46,6 +46,7 @@ const login = async base64 => {
         )
         console.log('reset file')
     } else if (mode === 'CHECK') {
+        // TODO: check also build
         const data = JSON.parse(await fs.readFile('./src/config/test.json', 'utf8'))
         if (
             data.ticket ||

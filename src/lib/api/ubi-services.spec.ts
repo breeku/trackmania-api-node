@@ -16,10 +16,11 @@ test.before(async t => {
     if (ticket) t.context.account = { ticket }
 })
 
-test.only('Get profile', async t => {
-    const response = await getProfilesById(
-        t.context.account.ticket,
-        'efbe1a34-889d-443a-9af2-e7780cf6ffe3',
-    )
+test.only('Get profiles', async t => {
+    const response = await getProfilesById(t.context.account.ticket, [
+        '0a2daffa-b588-4d99-bc65-9873b2c9ae6b',
+        '2ebf7150-5c14-4bb7-b5b2-7631ea68f889',
+        '4497b71f-3bcc-4d44-87c8-a61dcb1cd1ab',
+    ])
     t.assert(response)
 })
