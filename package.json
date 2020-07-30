@@ -28,7 +28,7 @@
     "cov": "run-s build test:unit cov:html && open-cli coverage/index.html",
     "cov:html": "nyc report --reporter=html",
     "cov:send": "nyc report --reporter=lcov && codecov",
-    "cov:actions": "run-s build test:ci && nyc report --reporter=lcov",
+    "cov:actions": "run-s test:ci && nyc report --reporter=lcov",
     "cov:check": "nyc report && nyc check-coverage --lines 100 --functions 100 --branches 100",
     "cov:typescript": "typescript-coverage-report",
     "doc": "run-s doc:html && open-cli build/docs/index.html",
@@ -40,9 +40,9 @@
     "clean": "trash build test",
     "prepare-release": "run-s reset test cov:check doc:html version doc:publish",
     "ts-coverage": "typescript-coverage-report",
-    "config:create": "npm run build:main && node test-helper CREATE",
-    "config:reset": "npm run build:main && node test-helper RESET",
-    "config:check": "npm run build:main && node test-helper CHECK"
+    "config:create": "node test-helper CREATE",
+    "config:reset": "node test-helper RESET",
+    "config:check": "node test-helper CHECK"
   },
   "scripts-info": {
     "info": "Display information about the package scripts",
