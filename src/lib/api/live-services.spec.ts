@@ -34,85 +34,137 @@ test.before(async t => {
 })
 
 test('Get all seasons', async t => {
-    const response = await getSeasons(t.context.account.lv2accessToken)
-    t.assert(response)
+    try {
+        const response = await getSeasons(t.context.account.lv2accessToken)
+        t.assert(response)
+    } catch (err) {
+        t.fail(JSON.stringify(err.response.data))
+    }
 })
 
 test('Get all TOTDs', async t => {
-    const response = await getTOTDs(t.context.account.lv2accessToken)
-    t.assert(response)
+    try {
+        const response = await getTOTDs(t.context.account.lv2accessToken)
+        t.assert(response)
+    } catch (err) {
+        t.fail(JSON.stringify(err.response.data))
+    }
 })
 
 test('List club campaigns', async t => {
-    const response = await getClubCampaigns(t.context.account.lv2accessToken)
-    t.assert(response)
+    try {
+        const response = await getClubCampaigns(t.context.account.lv2accessToken)
+        t.assert(response)
+    } catch (err) {
+        t.fail(JSON.stringify(err.response.data))
+    }
 })
 
 test('Get my group records', async t => {
-    const response = await getMyGroupRecords(
-        t.context.account.lv2accessToken,
-        '3987d489-03ae-4645-9903-8f7679c3a418',
-    )
-    t.assert(response)
+    try {
+        const response = await getMyGroupRecords(
+            t.context.account.lv2accessToken,
+            '3987d489-03ae-4645-9903-8f7679c3a418',
+        )
+        t.assert(response)
+    } catch (err) {
+        t.fail(JSON.stringify(err.response.data))
+    }
 })
 
 test('Get my position in a group', async t => {
-    const response = await getMyPositionGroup(
-        t.context.account.lv2accessToken,
-        '3987d489-03ae-4645-9903-8f7679c3a418',
-    )
-    t.assert(response)
+    try {
+        const response = await getMyPositionGroup(
+            t.context.account.lv2accessToken,
+            '3987d489-03ae-4645-9903-8f7679c3a418',
+        )
+        t.assert(response)
+    } catch (err) {
+        t.fail(JSON.stringify(err.response.data))
+    }
 })
 
 test('Get top players from a group', async t => {
-    const response = await getTopPlayersGroup(
-        t.context.account.lv2accessToken,
-        '3987d489-03ae-4645-9903-8f7679c3a418',
-    )
-    t.assert(response)
+    try {
+        const response = await getTopPlayersGroup(
+            t.context.account.lv2accessToken,
+            '3987d489-03ae-4645-9903-8f7679c3a418',
+        )
+        t.assert(response)
+    } catch (err) {
+        t.fail(JSON.stringify(err.response.data))
+    }
 })
 
 test('Get top players from a group and a map', async t => {
-    const response = await getTopGroupPlayersMap(
-        t.context.account.lv2accessToken,
-        '3987d489-03ae-4645-9903-8f7679c3a418',
-        'XJ_JEjWGoAexDWe8qfaOjEcq5l8',
-    )
-    t.assert(response)
+    try {
+        const response = await getTopGroupPlayersMap(
+            t.context.account.lv2accessToken,
+            '3987d489-03ae-4645-9903-8f7679c3a418',
+            'XJ_JEjWGoAexDWe8qfaOjEcq5l8',
+        )
+        t.assert(response)
+    } catch (err) {
+        t.fail(JSON.stringify(err.response.data))
+    }
 })
 
 test('Get top players from a map', async t => {
-    const response = await getTopPlayersMap(
-        t.context.account.lv2accessToken,
-        'XJ_JEjWGoAexDWe8qfaOjEcq5l8',
-    )
-    t.assert(response)
+    try {
+        const response = await getTopPlayersMap(
+            t.context.account.lv2accessToken,
+            'XJ_JEjWGoAexDWe8qfaOjEcq5l8',
+        )
+        t.assert(response)
+    } catch (err) {
+        t.fail(JSON.stringify(err.response.data))
+    }
 })
 
 test('Get surrounding players from a map', async t => {
-    const response = await getSurroundingPlayersMap(
-        t.context.account.lv2accessToken,
-        'XJ_JEjWGoAexDWe8qfaOjEcq5l8',
-    )
-    t.assert(response)
+    try {
+        const response = await getSurroundingPlayersMap(
+            t.context.account.lv2accessToken,
+            'XJ_JEjWGoAexDWe8qfaOjEcq5l8',
+        )
+        t.assert(response)
+    } catch (err) {
+        t.fail(JSON.stringify(err.response.data))
+    }
 })
 
 test('Get club rooms', async t => {
-    const response = await getClubRooms(t.context.account.lv2accessToken)
-    t.assert(response)
+    try {
+        const response = await getClubRooms(t.context.account.lv2accessToken)
+        t.assert(response)
+    } catch (err) {
+        t.fail(JSON.stringify(err.response.data))
+    }
 })
 
 test('Get arcade rooms', async t => {
-    const response = await getArcadeRooms(t.context.account.lv2accessToken)
-    t.assert(response)
+    try {
+        const response = await getArcadeRooms(t.context.account.lv2accessToken)
+        t.assert(response)
+    } catch (err) {
+        t.fail(JSON.stringify(err.response.data))
+    }
 })
 
 test('Get clubs', async t => {
-    const response = await getClubs(t.context.account.lv2accessToken)
-    t.assert(response)
+    try {
+        const response = await getClubs(t.context.account.lv2accessToken)
+        t.assert(response)
+    } catch (err) {
+        t.fail(JSON.stringify(err.response.data))
+    }
 })
 
 test('Get club members', async t => {
-    const response = await getClubMembers(t.context.account.lv2accessToken, 1)
-    t.assert(response)
+    try {
+        const response = await getClubMembers(t.context.account.lv2accessToken, 1)
+        t.assert(response)
+    } catch (err) {
+        t.fail(JSON.stringify(err.response.data))
+    }
 })

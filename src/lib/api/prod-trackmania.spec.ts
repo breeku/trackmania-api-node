@@ -31,71 +31,107 @@ test.before(async t => {
 })
 
 test('Get client config', async t => {
-    const response = await getClientConfig()
-    t.assert(response)
+    try {
+        const response = await getClientConfig()
+        t.assert(response)
+    } catch (err) {
+        t.fail(JSON.stringify(err.response.data))
+    }
 })
 
 test('Get zones', async t => {
-    const response = await getZones(t.context.account.lv1accessToken)
-    t.assert(response)
+    try {
+        const response = await getZones(t.context.account.lv1accessToken)
+        t.assert(response)
+    } catch (err) {
+        t.fail(JSON.stringify(err.response.data))
+    }
 })
 
 test('Get account zone', async t => {
-    const response = await getAccountZone(
-        t.context.account.lv1accessToken,
-        t.context.account.accountId,
-    )
-    t.assert(response)
+    try {
+        const response = await getAccountZone(
+            t.context.account.lv1accessToken,
+            t.context.account.accountId,
+        )
+        t.assert(response)
+    } catch (err) {
+        t.fail(JSON.stringify(err.response.data))
+    }
 })
 
 test('Get trophies', async t => {
-    const response = await getTrophies(t.context.account.lv1accessToken)
-    t.assert(response)
+    try {
+        const response = await getTrophies(t.context.account.lv1accessToken)
+        t.assert(response)
+    } catch (err) {
+        t.fail(JSON.stringify(err.response.data))
+    }
 })
 
 test('Get trophy count', async t => {
-    const response = await getTrophyCount(
-        t.context.account.lv1accessToken,
-        t.context.account.accountId,
-    )
-    t.assert(response)
+    try {
+        const response = await getTrophyCount(
+            t.context.account.lv1accessToken,
+            t.context.account.accountId,
+        )
+        t.assert(response)
+    } catch (err) {
+        t.fail(JSON.stringify(err.response.data))
+    }
 })
 
 test('Get season by ID', async t => {
-    const response = await getSeason(
-        t.context.account.lv1accessToken,
-        '3987d489-03ae-4645-9903-8f7679c3a418',
-    )
-    t.assert(response)
+    try {
+        const response = await getSeason(
+            t.context.account.lv1accessToken,
+            '3987d489-03ae-4645-9903-8f7679c3a418',
+        )
+        t.assert(response)
+    } catch (err) {
+        t.fail(JSON.stringify(err.response.data))
+    }
 })
 
 test.skip('Get server by UID', async t => {
     // TODO: get servers then get server by uid
-    const response = await getServer(
-        t.context.account.lv1accessToken,
-        'bc251924-d267-4702-b526-9ed4b950d729',
-    )
-    t.assert(response)
+    try {
+        const response = await getServer(
+            t.context.account.lv1accessToken,
+            'bc251924-d267-4702-b526-9ed4b950d729',
+        )
+        t.assert(response)
+    } catch (err) {
+        t.fail(JSON.stringify(err.response.data))
+    }
 })
 
 test('Get account map records', async t => {
-    const response = await getMapRecords(
-        t.context.account.lv1accessToken,
-        t.context.account.accountId,
-    )
-    t.assert(response)
+    try {
+        const response = await getMapRecords(
+            t.context.account.lv1accessToken,
+            t.context.account.accountId,
+        )
+        t.assert(response)
+    } catch (err) {
+        t.fail(JSON.stringify(err.response.data))
+    }
 })
 
 test('Get profile ids', async t => {
-    const response = await getProfiles(t.context.account.lv1accessToken, [
-        'a9cbdeff-daa3-4bc2-998c-b2838183fb97',
-        '531a9861-c024-4063-9b29-14601350b899',
-        '2ed0997d-62bc-4a53-8c09-ffb793382ea2',
-        '58278714-fbe5-4bb1-960c-3ad278bb7ecc',
-        'aa4e375f-d23e-4915-8d53-8b3307e06764',
-        'b67bedd1-7d2f-4861-86c4-dae8c1583ace',
-        'f6a1ceb1-1928-4043-9df8-2c5465e65eaa',
-        '95abee92-1174-45e3-8967-bc46d2e6afe3',
-    ])
-    t.assert(response)
+    try {
+        const response = await getProfiles(t.context.account.lv1accessToken, [
+            'a9cbdeff-daa3-4bc2-998c-b2838183fb97',
+            '531a9861-c024-4063-9b29-14601350b899',
+            '2ed0997d-62bc-4a53-8c09-ffb793382ea2',
+            '58278714-fbe5-4bb1-960c-3ad278bb7ecc',
+            'aa4e375f-d23e-4915-8d53-8b3307e06764',
+            'b67bedd1-7d2f-4861-86c4-dae8c1583ace',
+            'f6a1ceb1-1928-4043-9df8-2c5465e65eaa',
+            '95abee92-1174-45e3-8967-bc46d2e6afe3',
+        ])
+        t.assert(response)
+    } catch (err) {
+        t.fail(JSON.stringify(err.response.data))
+    }
 })

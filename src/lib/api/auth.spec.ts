@@ -10,13 +10,12 @@ const test = anyTest as TestInterface<{ credentials: string }>
 test.before(async t => {
     const email = process.env.EMAIL
     const password = process.env.PASSWORD
-    if (email !== 'none' && password !== 'none') {
-        t.context.credentials = Buffer.from(email + ':' + password).toString('base64')
-    }
+
+    t.context.credentials = Buffer.from(email + ':' + password).toString('base64')
 })
 
 test('login from level 0 to level 2, and refresh tokens', async t => {
-    if (t.context.credentials) {
+    try {
         const { ticket } = await loginUbi(t.context.credentials)
         const { accessToken } = await loginTrackmaniaUbi(ticket)
         const { refreshToken } = await loginTrackmaniaNadeo(
@@ -25,7 +24,7 @@ test('login from level 0 to level 2, and refresh tokens', async t => {
         )
         const refreshedTokens = await refreshTokens(refreshToken)
         t.assert(refreshedTokens)
-    } else {
-        t.fail()
+    } catch (err) {
+        t.fail(JSON.stringify(err.response.data))
     }
 })
