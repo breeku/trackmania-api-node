@@ -17,10 +17,14 @@ test.before(async t => {
 })
 
 test.only('Get profiles', async t => {
-    const response = await getProfilesById(t.context.account.ticket, [
-        '0a2daffa-b588-4d99-bc65-9873b2c9ae6b',
-        '2ebf7150-5c14-4bb7-b5b2-7631ea68f889',
-        '4497b71f-3bcc-4d44-87c8-a61dcb1cd1ab',
-    ])
-    t.assert(response)
+    try {
+        const response = await getProfilesById(t.context.account.ticket, [
+            '0a2daffa-b588-4d99-bc65-9873b2c9ae6b',
+            '2ebf7150-5c14-4bb7-b5b2-7631ea68f889',
+            '4497b71f-3bcc-4d44-87c8-a61dcb1cd1ab',
+        ])
+        t.assert(response)
+    } catch (err) {
+        t.fail(JSON.stringify(err.response.data))
+    }
 })
