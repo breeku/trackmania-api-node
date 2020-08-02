@@ -7,18 +7,22 @@ require('dotenv').config()
 const { promises: fs } = require('fs')
 
 const login = async base64 => {
-    const { ticket } = await loginUbi(base64) // login to ubi, level 0
-    const ubiTokens = await loginTrackmaniaUbi(ticket) // login to trackmania, level 1
-    const nadeoTokens = await loginTrackmaniaNadeo(
-        ubiTokens.accessToken,
-        'NadeoLiveServices',
-    ) // login to trackmania nadeoliveservices, level 2
-    console.log('logged in')
-    return {
-        ticket,
-        lv1accessToken: ubiTokens.accessToken,
-        lv2accessToken: nadeoTokens.accessToken,
-        accountId: nadeoTokens.accountId,
+    try {
+        const { ticket } = await loginUbi(base64) // login to ubi, level 0
+        const ubiTokens = await loginTrackmaniaUbi(ticket) // login to trackmania, level 1
+        const nadeoTokens = await loginTrackmaniaNadeo(
+            ubiTokens.accessToken,
+            'NadeoLiveServices',
+        ) // login to trackmania nadeoliveservices, level 2
+        console.log('logged in')
+        return {
+            ticket,
+            lv1accessToken: ubiTokens.accessToken,
+            lv2accessToken: nadeoTokens.accessToken,
+            accountId: nadeoTokens.accountId,
+        }
+    } catch (err) {
+        console.error(err.response.data)
     }
 }
 
