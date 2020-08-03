@@ -13,6 +13,7 @@ import {
     getServer,
     getMapRecords,
     getProfiles,
+    getMaps,
 } from './prod-trackmania'
 
 import credentials from '../../config/test.json'
@@ -129,6 +130,18 @@ test('Get profile ids', async t => {
             'b67bedd1-7d2f-4861-86c4-dae8c1583ace',
             'f6a1ceb1-1928-4043-9df8-2c5465e65eaa',
             '95abee92-1174-45e3-8967-bc46d2e6afe3',
+        ])
+        t.assert(response)
+    } catch (err) {
+        t.fail(JSON.stringify(err.response.data))
+    }
+})
+
+test('Get maps', async t => {
+    try {
+        const response = await getMaps(t.context.account.lv1accessToken, [
+            'rHonuj4sZKXkq3dbtafrs25ENPg',
+            '8bTOMNceJrsZdDD2UvJhGsRwnQg',
         ])
         t.assert(response)
     } catch (err) {
