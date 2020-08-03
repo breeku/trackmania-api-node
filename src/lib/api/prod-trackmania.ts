@@ -205,6 +205,39 @@ export const getProfiles = async (
     return response['data']
 }
 
+/**
+ * Get info about a map
+ *
+ * ## **Requires level 1 authentication**
+ *
+ * @category level 1
+ * @param string Access token
+ * @param Array mapUids
+ */
+export const getMaps = async (
+    accessToken: string,
+    mapUids: string[],
+): Promise<Imaps[]> => {
+    const str = mapUids
+        .map((x, i) => {
+            if (i !== mapUids.length - 1) {
+                return x + '%2c'
+            } else {
+                return x
+            }
+        })
+        .join('')
+
+    const headers = setHeaders(accessToken, 'nadeo')
+    const response = await axios({
+        url: urls.prodTrackmania + '/maps/?mapUidList=' + str,
+        method: 'GET',
+        headers,
+    })
+
+    return response['data']
+}
+
 export interface ImapRecords {
     accountId: string
     filename: string
@@ -385,4 +418,23 @@ export interface IwebIdentity {
     provider: string
     uid: string
     timestamp: string
+}
+
+export interface Imaps {
+    author: string
+    authorScore: number
+    bronzeScore: number
+    collectionName: string
+    environment: string
+    filename: string
+    goldScore: number
+    isPlayable: boolean
+    mapId: string
+    mapUid: string
+    name: string
+    silverScore: number
+    submitter: string
+    timestamp: string
+    fileUrl: string
+    thumbnailUrl: string
 }
