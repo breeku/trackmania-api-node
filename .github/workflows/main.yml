@@ -15,6 +15,7 @@ on:
 
 jobs:
     build:
+        if: ${{ github.event_name == 'pull_request' || github.event_name == 'push' }}
         runs-on: ubuntu-latest
 
         strategy:
@@ -53,7 +54,6 @@ jobs:
               run: npm run doc:html
 
             - name: Deploy draft to Netlify
-              if: ${{ github.event_name == 'pull_request' || github.event_name == 'push' }}
               uses: South-Paw/action-netlify-deploy@v1.0.4
               with:
                   github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -62,9 +62,37 @@ jobs:
                   build-dir: './build/docs'
                   draft: true
                   comment-on-commit: true
+    docs:
+        if: ${{ github.event_name == 'release' }}
+        runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                node-version: [14.x]
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v2
+
+            - name: Set up Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-version }}
+
+            - name: Cache dependencies
+              uses: actions/cache@v2
+              with:
+                  path: |
+                      **/node_modules
+                  key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+
+            - name: Install dependencies
+              run: npm i
+
+            - name: Build docs
+              run: npm run doc:html
 
             - name: Publish to netlify
-              if: ${{ github.event_name == 'release' }}
               uses: South-Paw/action-netlify-deploy@v1.0.4
               with:
                   github-token: ${{ secrets.GITHUB_TOKEN }}
