@@ -17,6 +17,7 @@ import {
     getArcadeRooms,
     getClubs,
     getClubMembers,
+    getPlayerRankings,
 } from './live-services'
 
 import credentials from '../../config/test.json'
@@ -163,6 +164,19 @@ test('Get clubs', async t => {
 test('Get club members', async t => {
     try {
         const response = await getClubMembers(t.context.account.lv2accessToken, 1)
+        t.assert(response)
+    } catch (err) {
+        t.fail(JSON.stringify(err.response.data))
+    }
+})
+
+test('Get player rankings', async t => {
+    try {
+        const response = await getPlayerRankings(t.context.account.lv2accessToken, [
+            'a9cbdeff-daa3-4bc2-998c-b2838183fb97',
+            '531a9861-c024-4063-9b29-14601350b899',
+            '2ed0997d-62bc-4a53-8c09-ffb793382ea2',
+        ])
         t.assert(response)
     } catch (err) {
         t.fail(JSON.stringify(err.response.data))
