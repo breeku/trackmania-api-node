@@ -388,6 +388,33 @@ export const getClubMembers = async (
     return response['data']
 }
 
+/**
+ * Obtain player rankings
+ *
+ * ## **Requires level 2 authentication**
+ *
+ * @category level 2
+ * @param string Access token
+ * @param string[] Account ids
+ *
+ */
+export const getPlayerRankings = async (accessToken: string, accountIds: string[]) => {
+    const obj = accountIds.map(id => {
+        return { accountId: id }
+    })
+    const headers = setHeaders(accessToken, 'nadeo')
+    const response = await axios({
+        url: urls.liveServices + '/api/token/leaderboard/trophy/player',
+        method: 'POST',
+        data: {
+            listPlayer: obj,
+        },
+        headers,
+    })
+
+    return response['data']
+}
+
 export interface IallSeasons {
     campaignList: campaign[]
     itemCount: number
