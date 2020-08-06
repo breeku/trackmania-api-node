@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.21](https://github.com/breeku/trackmania2020-api-node/compare/v0.0.20...v0.0.21) (2020-08-06)
+
 ### [0.0.20](https://github.com/breeku/trackmania2020-api-node/compare/v0.0.19...v0.0.20) (2020-08-03)
 
 ### [0.0.19](https://github.com/breeku/trackmania2020-api-node/compare/v0.0.18...v0.0.19) (2020-08-02)
