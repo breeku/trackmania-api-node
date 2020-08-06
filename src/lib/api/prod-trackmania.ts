@@ -156,15 +156,21 @@ export const getServer = async (accessToken: string, uid: string): Promise<Iserv
  *
  * @category level 1
  * @param string Access token
- * @param string accountId
+ * @param string Account id
+ * @param string Map id, optional. Leave out to get all records
  */
 export const getMapRecords = async (
     accessToken: string,
     accountId: string,
+    mapId?: string,
 ): Promise<ImapRecords[]> => {
     const headers = setHeaders(accessToken, 'nadeo')
     const response = await axios({
-        url: urls.prodTrackmania + '/mapRecords/?accountIdList=' + accountId,
+        url:
+            urls.prodTrackmania +
+            '/mapRecords/?accountIdList=' +
+            accountId +
+            (mapId ? '&addPersonalBest=false&mapIdList=' + mapId : ''),
         method: 'GET',
         headers,
     })

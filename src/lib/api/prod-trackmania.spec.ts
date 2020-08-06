@@ -111,7 +111,8 @@ test('Get account map records', async t => {
     try {
         const response = await getMapRecords(
             t.context.account.lv1accessToken,
-            t.context.account.accountId,
+            '7dc8d3e3-ccf0-4eb7-bbaa-e8752116ac33',
+            '27cb67e3-f8bc-4971-ab22-f74055ca6b37',
         )
         t.assert(response)
     } catch (err) {
