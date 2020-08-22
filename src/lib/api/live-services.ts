@@ -600,7 +600,8 @@ type top = {
     zoneId: string
     zoneName: string
     position: number
-    sp: string
+    sp?: number
+    score?: number
 }
 
 export interface ImapTopPlayer {

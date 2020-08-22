@@ -105,6 +105,7 @@ test('Get top players from a group and a map', async t => {
             '3987d489-03ae-4645-9903-8f7679c3a418',
             'XJ_JEjWGoAexDWe8qfaOjEcq5l8',
         )
+
         t.assert(response)
     } catch (err) {
         t.fail(JSON.stringify(err.response.data))
