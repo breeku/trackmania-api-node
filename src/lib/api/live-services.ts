@@ -698,9 +698,7 @@ export interface IleaderboardsAroundScore {
 }
 
 type level = {
-    accountId: string
     zoneId: string
     zoneName: string
-    position: number
-    score: number
+    level: top[]
 }
