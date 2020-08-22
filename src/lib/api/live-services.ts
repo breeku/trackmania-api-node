@@ -224,7 +224,7 @@ export const getLeaderboardsAroundScore = async (
     groupUid: string,
     mapUid: string,
     score: number,
-): Promise<IleaderboardsAroundScore> => {
+): Promise<ImapTopPlayer> => {
     const headers = setHeaders(accessToken, 'nadeo')
     const response = await axios({
         url:
@@ -233,8 +233,7 @@ export const getLeaderboardsAroundScore = async (
             groupUid +
             '/map/' +
             mapUid +
-            '/level?' +
-            'score=' +
+            '/surround/0/50?score=' +
             score,
         method: 'GET',
         headers,

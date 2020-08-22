@@ -118,7 +118,7 @@ test('Get leaderboards around a score', async t => {
             t.context.account.lv2accessToken,
             '3987d489-03ae-4645-9903-8f7679c3a418',
             'XJ_JEjWGoAexDWe8qfaOjEcq5l8',
-            19580,
+            19598,
         )
         t.assert(response)
     } catch (err) {
