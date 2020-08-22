@@ -208,6 +208,42 @@ export const getTopGroupPlayersMap = async (
 }
 
 /**
+ * Obtain the leaderboards around a score
+ *
+ * ## **Requires level 2 authentication**
+ *
+ * @category level 2
+ * @param string Access token
+ * @param string Group uid
+ * @param string Map uid
+ * @param number Score
+ *
+ */
+export const getLeaderboardsAroundScore = async (
+    accessToken: string,
+    groupUid: string,
+    mapUid: string,
+    score: number,
+): Promise<ImapTopPlayer> => {
+    const headers = setHeaders(accessToken, 'nadeo')
+    const response = await axios({
+        url:
+            urls.liveServices +
+            '/api/token/leaderboard/group/' +
+            groupUid +
+            '/map/' +
+            mapUid +
+            '/level?' +
+            'score=' +
+            score,
+        method: 'GET',
+        headers,
+    })
+
+    return response['data']
+}
+
+/**
  * Get the top players of a map, with no restriction of a group like the others endpoints
  *
  * ## **Requires level 2 authentication**

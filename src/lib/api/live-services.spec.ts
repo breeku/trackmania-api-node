@@ -18,6 +18,7 @@ import {
     getClubs,
     getClubMembers,
     getPlayerRankings,
+    getLeaderboardsAroundScore,
 } from './live-services'
 
 import credentials from '../../config/test.json'
@@ -103,6 +104,20 @@ test('Get top players from a group and a map', async t => {
             t.context.account.lv2accessToken,
             '3987d489-03ae-4645-9903-8f7679c3a418',
             'XJ_JEjWGoAexDWe8qfaOjEcq5l8',
+        )
+        t.assert(response)
+    } catch (err) {
+        t.fail(JSON.stringify(err.response.data))
+    }
+})
+
+test('Get leaderboards around a score', async t => {
+    try {
+        const response = await getLeaderboardsAroundScore(
+            t.context.account.lv2accessToken,
+            '3987d489-03ae-4645-9903-8f7679c3a418',
+            'XJ_JEjWGoAexDWe8qfaOjEcq5l8',
+            19580,
         )
         t.assert(response)
     } catch (err) {
