@@ -9,6 +9,7 @@ import {
     getAccountZone,
     getTrophies,
     getTrophyCount,
+    getTrophyHistory,
     getSeason,
     getServer,
     getMapRecords,
@@ -75,6 +76,21 @@ test('Get trophy count', async t => {
         const response = await getTrophyCount(
             t.context.account.lv1accessToken,
             t.context.account.accountId,
+        )
+        t.assert(response)
+    } catch (err) {
+        t.fail(JSON.stringify(err.response.data))
+    }
+})
+
+test('Get trophy history', async t => {
+    try {
+        const response = await getTrophyHistory(
+            t.context.account.lv1accessToken,
+            '7dc8d3e3-ccf0-4eb7-bbaa-e8752116ac33',
+            1,
+            0,
+            35,
         )
         t.assert(response)
     } catch (err) {
