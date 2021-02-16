@@ -24,7 +24,7 @@ const test = anyTest as TestInterface<{
 }>
 
 test.before(async t => {
-    const { accountId, lv1accessToken } = credentials as {
+    const { accountId, lv1accessToken } = (credentials as unknown) as {
         lv1accessToken: null | string
         accountId: null | string
     }

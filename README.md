@@ -4,11 +4,11 @@
 
 ### [Converting this repo to a npm module](https://github.com/The-Firexx/trackmania2020apidocumentation)
 
-> This API is not intended to be used outside of the game!!
+> "This API is not intended to be used outside of the game
 >
 > Be aware that Nadeo can change the API without even warning us, since the API is intended only to be used in game, so don't except any support for them, and don't try to make anything serious out of this
 >
-> Also, don't abuse of this API, has they have the right to lock your account since, for them, it's someone that is trying to hack or just trying to give bad performance to the servers
+> Also, don't abuse of this API, has they have the right to lock your account since, for them, it's someone that is trying to hack or just trying to give bad performance to the servers"
 
 # Usage
 

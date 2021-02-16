@@ -7,7 +7,7 @@ import { urls, setHeaders } from '../main'
 /**
  * Login to Ubisoft (level 0)
  *
- * @param value Base64 encoded email:password
+ * @param {string} base64 - Base64 encoded email:password
  *
  */
 export const loginUbi = async (base64: string): Promise<IloginUbi> => {
@@ -25,7 +25,7 @@ export const loginUbi = async (base64: string): Promise<IloginUbi> => {
 /**
  * Login to Trackmania Ubisoft (level 1)
  *
- * @param value Ticket from loginUbi
+ * @param {string} Ticket from loginUbi
  *
  */
 export const loginTrackmaniaUbi = async (ticket: string): Promise<IloginTrackmania> => {
@@ -46,7 +46,8 @@ export const loginTrackmaniaUbi = async (ticket: string): Promise<IloginTrackman
 /**
  * Login to Trackmania Nadeo (level 2)
  *
- * @param value Access token from loginTrackmaniaUbi
+ * @param {string} Access token from loginTrackmaniaUbi
+ * @param {string} Target API, NadeoLiveServices or NadeoClubServices
  *
  */
 export const loginTrackmaniaNadeo = async (
@@ -71,7 +72,7 @@ export const loginTrackmaniaNadeo = async (
 /**
  * Refresh tokens
  *
- * @param value Refresh token from loginTrackmaniaUbi
+ * @param {string} Refresh token from loginTrackmaniaUbi
  *
  */
 export const refreshTokens = async (refreshToken: string): Promise<Itokens> => {

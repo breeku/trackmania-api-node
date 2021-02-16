@@ -8,9 +8,9 @@ import { urls, setHeaders } from '../main'
  * ## **Requires level 2 authentication**
  *
  * @category level 2
- * @param string Access token
- * @param number Offset (default = 0)
- * @param number Length (default = 1)
+ * @param {string} accessToken - Access token
+ * @param {number} offset - Offset (default = 0)
+ * @param {number} length - Length (default = 1)
  *
  */
 export const getSeasons = async (
@@ -39,9 +39,9 @@ export const getSeasons = async (
  * ## **Requires level 2 authentication**
  *
  * @category level 2
- * @param string Access token
- * @param number Offset (default = 0)
- * @param number Length (default = 1)
+ * @param {string} accessToken - Access token
+ * @param {number} offset - Offset (default = 0)
+ * @param {number} length - Length (default = 1)
  *
  */
 export const getTOTDs = async (
@@ -70,11 +70,11 @@ export const getTOTDs = async (
  * ## **Requires level 2 authentication**
  *
  * @category level 2
- * @param string Access token
- * @param number Offset (default = 0)
- * @param number Length (default = 75)
- * @param string Sort (default = 'popularity')
- * @param string Order (default = 'DESC')
+ * @param {string} accessToken - Access token
+ * @param {number} offset - Offset (default = 0)
+ * @param {number} length - Length (default = 75)
+ * @param {string} sort - Sort (default = 'popularity')
+ * @param {string} order - Order (default = 'DESC')
  *
  */
 export const getClubCampaigns = async (
@@ -109,8 +109,8 @@ export const getClubCampaigns = async (
  * ## **Requires level 2 authentication**
  *
  * @category level 2
- * @param string Access token
- * @param string Group uid
+ * @param {string} accessToken - Access token
+ * @param {string} groupUid - Group uid
  *
  */
 export const getMyGroupRecords = async (
@@ -133,8 +133,8 @@ export const getMyGroupRecords = async (
  * ## **Requires level 2 authentication**
  *
  * @category level 2
- * @param string Access token
- * @param string Group uid
+ * @param {string} accessToken - Access token
+ * @param {string} groupUid - Group uid
  *
  */
 export const getMyPositionGroup = async (
@@ -157,8 +157,8 @@ export const getMyPositionGroup = async (
  * ## **Requires level 2 authentication**
  *
  * @category level 2
- * @param string Access token
- * @param string Group uid
+ * @param {string} accessToken - Access token
+ * @param {string} groupUid - Group uid
  *
  */
 export const getTopPlayersGroup = async (
@@ -181,9 +181,9 @@ export const getTopPlayersGroup = async (
  * ## **Requires level 2 authentication**
  *
  * @category level 2
- * @param string Access token
- * @param string Group uid
- * @param string Map uid
+ * @param {string} accessToken - Access token
+ * @param {string} groupUid - Group uid
+ * @param {string} mapUid - Map uid
  *
  */
 export const getTopGroupPlayersMap = async (
@@ -213,10 +213,10 @@ export const getTopGroupPlayersMap = async (
  * ## **Requires level 2 authentication**
  *
  * @category level 2
- * @param string Access token
- * @param string Group uid
- * @param string Map uid
- * @param number Score
+ * @param {string} accessToken - Access token
+ * @param {string} groupUid - Group uid
+ * @param {string} mapUid - Map uid
+ * @param {number} score - Score
  *
  */
 export const getLeaderboardsAroundScore = async (
@@ -248,8 +248,8 @@ export const getLeaderboardsAroundScore = async (
  * ## **Requires level 2 authentication**
  *
  * @category level 2
- * @param string Access token
- * @param string Map uid
+ * @param {string} accessToken - Access token
+ * @param {string} mapUid - Map uid
  *
  */
 export const getTopPlayersMap = async (
@@ -276,8 +276,8 @@ export const getTopPlayersMap = async (
  * ## **Requires level 2 authentication**
  *
  * @category level 2
- * @param string Access token
- * @param string Map uid
+ * @param {string} accessToken - Access token
+ * @param {string} mapUid - Map uid
  *
  */
 export const getSurroundingPlayersMap = async (
@@ -304,11 +304,11 @@ export const getSurroundingPlayersMap = async (
  * ## **Requires level 2 authentication**
  *
  * @category level 2
- * @param string Access token
- * @param number Offset (default = 0)
- * @param number Length (default = 75)
- * @param string Sort (default = 'popularity')
- * @param string Order (default = 'DESC')
+ * @param {string} accessToken - Access token
+ * @param {number} offset - Offset (default = 0)
+ * @param {number} length - Length (default = 75)
+ * @param {string} sort - Sort (default = 'popularity')
+ * @param {string} order - Order (default = 'DESC')
  *
  */
 export const getClubRooms = async (
@@ -343,7 +343,7 @@ export const getClubRooms = async (
  * ## **Requires level 2 authentication**
  *
  * @category level 2
- * @param string Access token
+ * @param {string} accessToken - Access token
  *
  */
 export const getArcadeRooms = async (accessToken: string): Promise<IarcadeRooms> => {
@@ -363,9 +363,9 @@ export const getArcadeRooms = async (accessToken: string): Promise<IarcadeRooms>
  * ## **Requires level 2 authentication**
  *
  * @category level 2
- * @param string Access token
- * @param number Offset (default = 0)
- * @param number Length (default = 90)
+ * @param {string} accessToken - Access token
+ * @param {number} offset - Offset (default = 0)
+ * @param {number} length Length (default = 90)
  *
  */
 export const getClubs = async (
@@ -394,10 +394,10 @@ export const getClubs = async (
  * ## **Requires level 2 authentication**
  *
  * @category level 2
- * @param string Access token
- * @param number Clubid
- * @param number Offset (default = 0)
- * @param number Length (default = 27)
+ * @param {string} accessToken - Access token
+ * @param {number} clubId - Clubid
+ * @param {number} offset - Offset (default = 0)
+ * @param {number} length - Length (default = 27)
  *
  */
 export const getClubMembers = async (
@@ -429,8 +429,8 @@ export const getClubMembers = async (
  * ## **Requires level 2 authentication**
  *
  * @category level 2
- * @param string Access token
- * @param string[] Account ids
+ * @param {string} accessToken - Access token
+ * @param {string[]} accountIds - Account ids
  *
  */
 export const getPlayerRankings = async (accessToken: string, accountIds: string[]) => {

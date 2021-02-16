@@ -11,6 +11,7 @@ export const urls = {
     },
     prodTrackmania: 'https://prod.trackmania.core.nadeo.online',
     liveServices: 'https://live-services.trackmania.nadeo.live',
+    matchmaking: 'https://matchmaking.trackmania.nadeo.club/api/matchmaking/2/',
 }
 
 /** @internal */

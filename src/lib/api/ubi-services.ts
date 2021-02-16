@@ -5,11 +5,11 @@ import { setHeaders } from '../main'
 /**
  * Get more info about profiles
  *
- * ## **Requires level 0 authentication**
+ * ## **Requires level 1 authentication**
  *
  * @category level 1
- * @param string Ticket
- * @param Array Profile ids
+ * @param {string} accessToken - Ticket
+ * @param {string[]} profileIds - Profile ids
  *
  */
 export const getProfilesById = async (
