@@ -20,16 +20,17 @@ import {
 import credentials from '../../config/test.json'
 
 const test = anyTest as TestInterface<{
-    account: { lv1accessToken: string; accountId: string }
+    account: { lv1liveAccessToken: string; accountId: string }
 }>
 
 test.before(async t => {
-    const { accountId, lv1accessToken } = credentials as {
-        lv1accessToken: null | string
+    const { accountId, lv1liveAccessToken } = (credentials as unknown) as {
+        lv1liveAccessToken: null | string
         accountId: null | string
     }
 
-    if (lv1accessToken && accountId) t.context.account = { lv1accessToken, accountId }
+    if (lv1liveAccessToken && accountId)
+        t.context.account = { lv1liveAccessToken, accountId }
 })
 
 test('Get client config', async t => {
@@ -43,7 +44,7 @@ test('Get client config', async t => {
 
 test('Get zones', async t => {
     try {
-        const response = await getZones(t.context.account.lv1accessToken)
+        const response = await getZones(t.context.account.lv1liveAccessToken)
         t.assert(response)
     } catch (err) {
         t.fail(JSON.stringify(err.response.data))
@@ -53,7 +54,7 @@ test('Get zones', async t => {
 test('Get account zone', async t => {
     try {
         const response = await getAccountZone(
-            t.context.account.lv1accessToken,
+            t.context.account.lv1liveAccessToken,
             t.context.account.accountId,
         )
         t.assert(response)
@@ -64,7 +65,7 @@ test('Get account zone', async t => {
 
 test('Get trophies', async t => {
     try {
-        const response = await getTrophies(t.context.account.lv1accessToken)
+        const response = await getTrophies(t.context.account.lv1liveAccessToken)
         t.assert(response)
     } catch (err) {
         t.fail(JSON.stringify(err.response.data))
@@ -74,7 +75,7 @@ test('Get trophies', async t => {
 test('Get trophy count', async t => {
     try {
         const response = await getTrophyCount(
-            t.context.account.lv1accessToken,
+            t.context.account.lv1liveAccessToken,
             t.context.account.accountId,
         )
         t.assert(response)
@@ -86,7 +87,7 @@ test('Get trophy count', async t => {
 test('Get trophy history', async t => {
     try {
         const response = await getTrophyHistory(
-            t.context.account.lv1accessToken,
+            t.context.account.lv1liveAccessToken,
             '7dc8d3e3-ccf0-4eb7-bbaa-e8752116ac33',
             1,
             0,
@@ -101,7 +102,7 @@ test('Get trophy history', async t => {
 test('Get season by ID', async t => {
     try {
         const response = await getSeason(
-            t.context.account.lv1accessToken,
+            t.context.account.lv1liveAccessToken,
             '3987d489-03ae-4645-9903-8f7679c3a418',
         )
         t.assert(response)
@@ -114,7 +115,7 @@ test.skip('Get server by UID', async t => {
     // TODO: get servers then get server by uid
     try {
         const response = await getServer(
-            t.context.account.lv1accessToken,
+            t.context.account.lv1liveAccessToken,
             'bc251924-d267-4702-b526-9ed4b950d729',
         )
         t.assert(response)
@@ -126,7 +127,7 @@ test.skip('Get server by UID', async t => {
 test('Get account map records', async t => {
     try {
         const response = await getMapRecords(
-            t.context.account.lv1accessToken,
+            t.context.account.lv1liveAccessToken,
             '7dc8d3e3-ccf0-4eb7-bbaa-e8752116ac33',
             '27cb67e3-f8bc-4971-ab22-f74055ca6b37',
         )
@@ -138,7 +139,7 @@ test('Get account map records', async t => {
 
 test('Get profile ids', async t => {
     try {
-        const response = await getProfiles(t.context.account.lv1accessToken, [
+        const response = await getProfiles(t.context.account.lv1liveAccessToken, [
             'a9cbdeff-daa3-4bc2-998c-b2838183fb97',
             '531a9861-c024-4063-9b29-14601350b899',
             '2ed0997d-62bc-4a53-8c09-ffb793382ea2',
@@ -156,7 +157,7 @@ test('Get profile ids', async t => {
 
 test('Get maps', async t => {
     try {
-        const response = await getMaps(t.context.account.lv1accessToken, [
+        const response = await getMaps(t.context.account.lv1liveAccessToken, [
             'rHonuj4sZKXkq3dbtafrs25ENPg',
             '8bTOMNceJrsZdDD2UvJhGsRwnQg',
         ])

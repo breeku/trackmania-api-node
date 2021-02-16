@@ -10,19 +10,24 @@ const login = async base64 => {
     try {
         const { ticket } = await loginUbi(base64) // login to ubi, level 0
         const ubiTokens = await loginTrackmaniaUbi(ticket) // login to trackmania, level 1
-        const nadeoTokens = await loginTrackmaniaNadeo(
+        const nadeoLiveTokens = await loginTrackmaniaNadeo(
             ubiTokens.accessToken,
             'NadeoLiveServices',
         ) // login to trackmania nadeoliveservices, level 2
+        const nadeoClubTokens = await loginTrackmaniaNadeo(
+            ubiTokens.accessToken,
+            'NadeoClubServices',
+        )
         console.log('logged in')
         return {
             ticket,
             lv1accessToken: ubiTokens.accessToken,
-            lv2accessToken: nadeoTokens.accessToken,
-            accountId: nadeoTokens.accountId,
+            lv2liveAccessToken: nadeoLiveTokens.accessToken,
+            lv2clubAccessToken: nadeoClubTokens.accessToken,
+            accountId: nadeoLiveTokens.accountId,
         }
     } catch (err) {
-        console.error(err.response.data)
+        console.error(err)
     }
 }
 
@@ -44,7 +49,8 @@ const login = async base64 => {
             JSON.stringify({
                 ticket: null,
                 lv1accessToken: null,
-                lv2accessToken: null,
+                lv2liveAccessToken: null,
+                lv2clubAccessToken: null,
                 accountId: null,
             }),
         )

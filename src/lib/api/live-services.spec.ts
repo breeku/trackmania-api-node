@@ -24,20 +24,21 @@ import {
 import credentials from '../../config/test.json'
 
 const test = anyTest as TestInterface<{
-    account: { lv2accessToken: string; accountId: string }
+    account: { lv2liveAccessToken: string; accountId: string }
 }>
 
 test.before(async t => {
-    const { accountId, lv2accessToken } = credentials as {
-        lv2accessToken: null | string
+    const { accountId, lv2liveAccessToken } = credentials as {
+        lv2liveAccessToken: null | string
         accountId: null | string
     }
-    if (accountId && lv2accessToken) t.context.account = { lv2accessToken, accountId }
+    if (accountId && lv2liveAccessToken)
+        t.context.account = { lv2liveAccessToken, accountId }
 })
 
 test('Get all seasons', async t => {
     try {
-        const response = await getSeasons(t.context.account.lv2accessToken)
+        const response = await getSeasons(t.context.account.lv2liveAccessToken)
         t.assert(response)
     } catch (err) {
         t.fail(JSON.stringify(err.response.data))
@@ -46,7 +47,7 @@ test('Get all seasons', async t => {
 
 test('Get all TOTDs', async t => {
     try {
-        const response = await getTOTDs(t.context.account.lv2accessToken)
+        const response = await getTOTDs(t.context.account.lv2liveAccessToken)
         t.assert(response)
     } catch (err) {
         t.fail(JSON.stringify(err.response.data))
@@ -55,7 +56,7 @@ test('Get all TOTDs', async t => {
 
 test('List club campaigns', async t => {
     try {
-        const response = await getClubCampaigns(t.context.account.lv2accessToken)
+        const response = await getClubCampaigns(t.context.account.lv2liveAccessToken)
         t.assert(response)
     } catch (err) {
         t.fail(JSON.stringify(err.response.data))
@@ -65,7 +66,7 @@ test('List club campaigns', async t => {
 test('Get my group records', async t => {
     try {
         const response = await getMyGroupRecords(
-            t.context.account.lv2accessToken,
+            t.context.account.lv2liveAccessToken,
             '3987d489-03ae-4645-9903-8f7679c3a418',
         )
         t.assert(response)
@@ -77,7 +78,7 @@ test('Get my group records', async t => {
 test('Get my position in a group', async t => {
     try {
         const response = await getMyPositionGroup(
-            t.context.account.lv2accessToken,
+            t.context.account.lv2liveAccessToken,
             '3987d489-03ae-4645-9903-8f7679c3a418',
         )
         t.assert(response)
@@ -89,7 +90,7 @@ test('Get my position in a group', async t => {
 test('Get top players from a group', async t => {
     try {
         const response = await getTopPlayersGroup(
-            t.context.account.lv2accessToken,
+            t.context.account.lv2liveAccessToken,
             '3987d489-03ae-4645-9903-8f7679c3a418',
         )
         t.assert(response)
@@ -101,7 +102,7 @@ test('Get top players from a group', async t => {
 test('Get top players from a group and a map', async t => {
     try {
         const response = await getTopGroupPlayersMap(
-            t.context.account.lv2accessToken,
+            t.context.account.lv2liveAccessToken,
             '3987d489-03ae-4645-9903-8f7679c3a418',
             'XJ_JEjWGoAexDWe8qfaOjEcq5l8',
         )
@@ -115,7 +116,7 @@ test('Get top players from a group and a map', async t => {
 test('Get leaderboards around a score', async t => {
     try {
         const response = await getLeaderboardsAroundScore(
-            t.context.account.lv2accessToken,
+            t.context.account.lv2liveAccessToken,
             '3987d489-03ae-4645-9903-8f7679c3a418',
             'XJ_JEjWGoAexDWe8qfaOjEcq5l8',
             19598,
@@ -129,7 +130,7 @@ test('Get leaderboards around a score', async t => {
 test('Get top players from a map', async t => {
     try {
         const response = await getTopPlayersMap(
-            t.context.account.lv2accessToken,
+            t.context.account.lv2liveAccessToken,
             'XJ_JEjWGoAexDWe8qfaOjEcq5l8',
         )
         t.assert(response)
@@ -141,7 +142,7 @@ test('Get top players from a map', async t => {
 test('Get surrounding players from a map', async t => {
     try {
         const response = await getSurroundingPlayersMap(
-            t.context.account.lv2accessToken,
+            t.context.account.lv2liveAccessToken,
             'XJ_JEjWGoAexDWe8qfaOjEcq5l8',
         )
         t.assert(response)
@@ -152,7 +153,7 @@ test('Get surrounding players from a map', async t => {
 
 test('Get club rooms', async t => {
     try {
-        const response = await getClubRooms(t.context.account.lv2accessToken)
+        const response = await getClubRooms(t.context.account.lv2liveAccessToken)
         t.assert(response)
     } catch (err) {
         t.fail(JSON.stringify(err.response.data))
@@ -161,7 +162,7 @@ test('Get club rooms', async t => {
 
 test('Get arcade rooms', async t => {
     try {
-        const response = await getArcadeRooms(t.context.account.lv2accessToken)
+        const response = await getArcadeRooms(t.context.account.lv2liveAccessToken)
         t.assert(response)
     } catch (err) {
         t.fail(JSON.stringify(err.response.data))
@@ -170,7 +171,7 @@ test('Get arcade rooms', async t => {
 
 test('Get clubs', async t => {
     try {
-        const response = await getClubs(t.context.account.lv2accessToken)
+        const response = await getClubs(t.context.account.lv2liveAccessToken)
         t.assert(response)
     } catch (err) {
         t.fail(JSON.stringify(err.response.data))
@@ -179,7 +180,7 @@ test('Get clubs', async t => {
 
 test('Get club members', async t => {
     try {
-        const response = await getClubMembers(t.context.account.lv2accessToken, 1)
+        const response = await getClubMembers(t.context.account.lv2liveAccessToken, 1)
         t.assert(response)
     } catch (err) {
         t.fail(JSON.stringify(err.response.data))
@@ -188,7 +189,7 @@ test('Get club members', async t => {
 
 test('Get player rankings', async t => {
     try {
-        const response = await getPlayerRankings(t.context.account.lv2accessToken, [
+        const response = await getPlayerRankings(t.context.account.lv2liveAccessToken, [
             'a9cbdeff-daa3-4bc2-998c-b2838183fb97',
             '531a9861-c024-4063-9b29-14601350b899',
             '2ed0997d-62bc-4a53-8c09-ffb793382ea2',
