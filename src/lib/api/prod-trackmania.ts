@@ -90,6 +90,7 @@ export const getTrophies = async (accessToken: string): Promise<Itrophies> => {
  *
  * @category level 1
  * @param string Access token
+ * @param string Account ID
  *
  */
 export const getTrophyCount = async (
@@ -99,6 +100,44 @@ export const getTrophyCount = async (
     const headers = setHeaders(accessToken, 'nadeo')
     const response = await axios({
         url: urls.prodTrackmania + '/accounts/' + accountId + '/trophies/lastYearSummary',
+        method: 'GET',
+        headers,
+    })
+
+    return response['data']
+}
+/**
+ * Get trophy history
+ *
+ * ## **Requires level 1 authentication**
+ *
+ * @category level 1
+ * @param string Access token
+ * @param string Account ID
+ * @param number Trophy type (1/2/3/4/5/6/7/8/9)
+ * @param number Offset (default = 0)
+ * @param number Count (default = 35)
+ *
+ */
+export const getTrophyHistory = async (
+    accessToken: string,
+    accountId: string,
+    trophyType: number,
+    offset: number = 0,
+    count: number = 35,
+): Promise<ItrophyHistory> => {
+    const headers = setHeaders(accessToken, 'nadeo')
+    const response = await axios({
+        url:
+            urls.prodTrackmania +
+            '/accounts/' +
+            accountId +
+            '/trophies/?trophyType=' +
+            trophyType +
+            '&offset=' +
+            offset +
+            '&count=' +
+            count,
         method: 'GET',
         headers,
     })
@@ -296,6 +335,47 @@ export interface ItrophyCount {
     t8Count: number
     t9Count: number
     timestamp: string
+}
+
+type TrophyAchievementInfo = {
+    trophyAchievementId: string
+    trophyAchievementType: string
+    trophySoloMedalAchievementType: string
+    duration?: number
+    gameMode: string
+    gameModeCustomData: string
+    isOfficial?: boolean
+    serverId: string
+}
+
+type TrophyGainDetails = {
+    level: number
+    previousLevel: number
+    rank?: number
+    trophyRanking?: number
+}
+
+type trophyHistoryData = {
+    accountId: string
+    t1Count: number
+    t2Count: number
+    t3Count: number
+    t4Count: number
+    t5Count: number
+    t6Count: number
+    t7Count: number
+    t8Count: number
+    t9Count: number
+    timestamp: Date
+    trophyAchievementInfo: TrophyAchievementInfo
+    trophyGainDetails: TrophyGainDetails
+}
+
+export interface ItrophyHistory {
+    count: number
+    data: trophyHistoryData[]
+    offset: number
+    totalCount: number
 }
 
 export interface Itrophies {
