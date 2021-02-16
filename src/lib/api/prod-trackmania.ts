@@ -146,7 +146,7 @@ export const getTrophyHistory = async (
 }
 
 /**
- * Get info about a season, with all the details, included info about map ids
+ * Get trophy history
  *
  * ## **Requires level 2 authentication**
  *
