@@ -22,9 +22,9 @@ export const getClientConfig = async (): Promise<IclientConfig> => {
 /**
  * Get all the IDs from all the zones for internal use and to be able to call endpoints using this IDs
  *
- * ## **Requires level 1 authentication**
+ * ## **Requires level 2 authentication**
  *
- * @category level 1
+ * @category level 2
  * @param string Access token
  *
  */
@@ -42,9 +42,9 @@ export const getZones = async (accessToken: string): Promise<Izones[]> => {
 /**
  * Get account zone
  *
- * ## **Requires level 1 authentication**
+ * ## **Requires level 2 authentication**
  *
- * @category level 1
+ * @category level 2
  * @param string Access token
  * @param string Account ID
  *
@@ -66,9 +66,9 @@ export const getAccountZone = async (
 /**
  * Get Trophies
  *
- * ## **Requires level 1 authentication**
+ * ## **Requires level 2 authentication**
  *
- * @category level 1
+ * @category level 2
  * @param string Access token
  *
  */
@@ -86,9 +86,9 @@ export const getTrophies = async (accessToken: string): Promise<Itrophies> => {
 /**
  * Get Trophy count
  *
- * ## **Requires level 1 authentication**
+ * ## **Requires level 2 authentication**
  *
- * @category level 1
+ * @category level 2
  * @param string Access token
  *
  */
@@ -109,9 +109,9 @@ export const getTrophyCount = async (
 /**
  * Get info about a season, with all the details, included info about map ids
  *
- * ## **Requires level 1 authentication**
+ * ## **Requires level 2 authentication**
  *
- * @category level 1
+ * @category level 2
  * @param string Access token
  * @param string The seasons uuid
  *
@@ -130,9 +130,9 @@ export const getSeason = async (accessToken: string, uuid: string): Promise<Isea
 /**
  * Get info about a server
  *
- * ## **Requires level 1 authentication**
+ * ## **Requires level 2 authentication**
  *
- * @category level 1
+ * @category level 2
  * @param string Access token
  * @param string Server uid
  * @returns unknown
@@ -152,9 +152,9 @@ export const getServer = async (accessToken: string, uid: string): Promise<Iserv
 /**
  * Get map records for a account
  *
- * ## **Requires level 1 authentication**
+ * ## **Requires level 2 authentication**
  *
- * @category level 1
+ * @category level 2
  * @param string Access token
  * @param string Account id
  * @param string Map id, optional. Leave out to get all records
@@ -181,9 +181,9 @@ export const getMapRecords = async (
 /**
  * Get web identity based on account ids
  *
- * ## **Requires level 1 authentication**
+ * ## **Requires level 2 authentication**
  *
- * @category level 1
+ * @category level 2
  * @param string Access token
  * @param Array account ids
  */
@@ -214,9 +214,9 @@ export const getProfiles = async (
 /**
  * Get info about a map
  *
- * ## **Requires level 1 authentication**
+ * ## **Requires level 2 authentication**
  *
- * @category level 1
+ * @category level 2
  * @param string Access token
  * @param Array mapUids
  */

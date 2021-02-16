@@ -5,7 +5,7 @@ import { setHeaders } from '../main'
 /**
  * Get more info about profiles
  *
- * ## **Requires level 0 authentication**
+ * ## **Requires level 1 authentication**
  *
  * @category level 1
  * @param string Ticket
