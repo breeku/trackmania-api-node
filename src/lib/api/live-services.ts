@@ -134,37 +134,6 @@ export const getClubCampaigns = async (
 }
 
 /**
- * Returns info about the room based on both the roomId and the clubId (used in Clubs)
- *
- * ## **Requires level 2 authentication**
- *
- * @category level 2
- * @param {string} accessToken - Access token
- * @param {number} clubId - Club ID
- * @param {number} roomId - Room ID
- *
- */
- export const getClubRoomById = async (
-    accessToken: string,
-    clubId: number,
-    roomId: number,
-): Promise<IclubRoom> => {
-    const headers = setHeaders(accessToken, 'nadeo')
-    const response = await axios({
-        url:
-            urls.liveServices +
-            '/api/token/club/' +
-            clubId +
-            '/room/' +
-            roomId,
-        method: 'GET',
-        headers,
-    })
-
-    return response['data']
-}
-
-/**
  * Returns your record in everymap of that group, and your position in each zone
  *
  * ## **Requires level 2 authentication**
@@ -391,6 +360,37 @@ export const getClubRooms = async (
             sort +
             '&order=' +
             order,
+        method: 'GET',
+        headers,
+    })
+
+    return response['data']
+}
+
+/**
+ * Returns info about the room based on both the roomId and the clubId (used in Clubs)
+ *
+ * ## **Requires level 2 authentication**
+ *
+ * @category level 2
+ * @param {string} accessToken - Access token
+ * @param {number} clubId - Club ID
+ * @param {number} roomId - Room ID
+ *
+ */
+ export const getClubRoomById = async (
+    accessToken: string,
+    clubId: number,
+    roomId: number,
+): Promise<IclubRoom> => {
+    const headers = setHeaders(accessToken, 'nadeo')
+    const response = await axios({
+        url:
+            urls.liveServices +
+            '/api/token/club/' +
+            clubId +
+            '/room/' +
+            roomId,
         method: 'GET',
         headers,
     })
