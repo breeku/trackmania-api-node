@@ -103,7 +103,7 @@ export const getClubCampaigns = async (
     return response['data']
 }
 /**
- * Returns info about the campaign based on both the campaignId and the clubId (used in Clubs)
+ * Obtain all the information about the campaigns of a club
  *
  * ## **Requires level 2 authentication**
  *
@@ -368,7 +368,7 @@ export const getClubRooms = async (
 }
 
 /**
- * Returns info about the room based on both the roomId and the clubId (used in Clubs)
+ * Obtain all the information about the rooms of a club
  *
  * ## **Requires level 2 authentication**
  *
