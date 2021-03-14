@@ -528,6 +528,33 @@ export const getClubs = async (
 }
 
 /**
+ * Obtain all the information about a club
+ *
+ * ## **Requires level 2 authentication**
+ *
+ * @category level 2
+ * @param {string} accessToken - Access token
+ * @param {number} clubId - Club ID
+ *
+ */
+ export const getClubById = async (
+    accessToken: string,
+    clubId: number,
+): Promise<Iclub> => {
+    const headers = setHeaders(accessToken, 'nadeo')
+    const response = await axios({
+        url:
+            urls.liveServices +
+            '/api/token/club/' +
+            clubId,
+        method: 'GET',
+        headers,
+    })
+
+    return response['data']
+}
+
+/**
  * This is used to obtain the competitions in the Events section of the game
  *
  * ## **Requires level 2 authentication**
@@ -940,6 +967,26 @@ export interface Iclubs {
     clubList: unknown[]
     maxPage: number
     clubCount: number
+}
+
+export interface Iclub {
+    id: number
+    name: string
+    tag: string
+    description: string
+    iconUrl: string
+    logoUrl: string
+    decalUrl: string
+    screen16x9Url: string
+    decalSponsor4x1Url: string
+    screen8x1Url: string
+    screen16x1Url: string
+    verticalUrl: string
+    backgroundUrl: string
+    creationTimestamp: number
+    popularityLevel: number
+    state: string
+    featured: boolean
 }
 
 export interface IclubMembers {
