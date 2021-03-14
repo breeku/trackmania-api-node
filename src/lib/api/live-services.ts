@@ -419,6 +419,46 @@ export const getArcadeRooms = async (accessToken: string): Promise<IarcadeRooms>
 }
 
 /**
+ * This is used to obtain the skins in the Create section of the game
+ *
+ * ## **Requires level 2 authentication**
+ *
+ * @category level 2
+ * @param {string} accessToken - Access token
+ * @param {number} offset - Offset (default = 0)
+ * @param {number} length - Length (default = 75)
+ * @param {string} sort - Sort (default = 'popularity')
+ * @param {string} order - Order (default = 'DESC')
+ *
+ */
+export const getClubSkins = async (
+    accessToken: string,
+    offset: number = 0,
+    length: number = 75,
+    sort: string = 'popularity',
+    order: string = 'DESC',
+): Promise<IclubSkins> => {
+    const headers = setHeaders(accessToken, 'nadeo')
+    const response = await axios({
+        url:
+            urls.liveServices +
+            '/api/token/club/room?offset=' +
+            offset +
+            '&length=' +
+            length +
+            '&sort=' +
+            sort +
+            '&order=' +
+            order,
+        method: 'GET',
+        headers,
+    })
+
+    return response['data']
+}
+
+
+/**
  * List all the clubs in the club section
  *
  * ## **Requires level 2 authentication**
@@ -759,6 +799,25 @@ type timeSlot = {
     relativeStart: number
     relativeEnd: number
     mediaUrl: string
+}
+
+export interface IclubSkins {
+    clubBucketList: clubSkin[]
+    maxPage: number
+    itemCount: number
+}
+
+type clubSkin = {
+    type: string
+    bucketItemCount: number
+    popularityLevel: number
+    popularityValue: number
+    medialUrl: string
+    id: number
+    clubId: number
+    clubName: string
+    name: string
+    creationTimestamp: number
 }
 
 export interface Iclubs {
