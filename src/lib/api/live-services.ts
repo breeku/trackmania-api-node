@@ -102,6 +102,36 @@ export const getClubCampaigns = async (
 
     return response['data']
 }
+/**
+ * Find a campaign by passing its club ID and its own ID
+ *
+ * ## **Requires level 2 authentication**
+ *
+ * @category level 2
+ * @param {string} accessToken - Access token
+ * @param {number} clubId - Club ID
+ * @param {number} campaignId - Campaign ID
+ *
+ */
+ export const getClubCampaignById = async (
+    accessToken: string,
+    clubId: number,
+    campaignId: number,
+): Promise<IclubCampaign> => {
+    const headers = setHeaders(accessToken, 'nadeo')
+    const response = await axios({
+        url:
+            urls.liveServices +
+            '/api/token/club/' +
+            clubId +
+            '/campaign/' +
+            campaignId,
+        method: 'GET',
+        headers,
+    })
+
+    return response['data']
+}
 
 /**
  * Returns your record in everymap of that group, and your position in each zone
@@ -538,6 +568,21 @@ export interface IclubCampaigns {
     clubCampaignList: clubCampaign[]
     maxPage: number
     itemCount: number
+}
+
+export interface IclubCampaign {
+    clubId: number
+    clubIconUrl: string
+    clubDecalUrl: string
+    campaignId: number
+    publicationTimestamp: number
+    publishedOn: number
+    creationTimestamp: number
+    activityId: number
+    mediaUrl: string
+    name: string
+    campaign: campaign
+    popularityLevel: number
 }
 
 type clubCampaign = {
