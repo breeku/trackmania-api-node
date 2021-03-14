@@ -528,6 +528,45 @@ export const getClubs = async (
 }
 
 /**
+ * This is used to obtain the competitions in the Events section of the game
+ *
+ * ## **Requires level 2 authentication**
+ *
+ * @category level 2
+ * @param {string} accessToken - Access token
+ * @param {number} offset - Offset (default = 0)
+ * @param {number} length - Length (default = 75)
+ * @param {string} sort - Sort (default = 'popularity')
+ * @param {string} order - Order (default = 'DESC')
+ *
+ */
+ export const getClubCompetitions = async (
+    accessToken: string,
+    offset: number = 0,
+    length: number = 75,
+    sort: string = 'popularity',
+    order: string = 'DESC',
+): Promise<IclubCompetitions> => {
+    const headers = setHeaders(accessToken, 'nadeo')
+    const response = await axios({
+        url:
+            urls.liveServices +
+            '/api/token/club/competition?offset=' +
+            offset +
+            '&length=' +
+            length +
+            '&sort=' +
+            sort +
+            '&order=' +
+            order,
+        method: 'GET',
+        headers,
+    })
+
+    return response['data']
+}
+
+/**
  * Obtain all the information about the members of a club
  *
  * ## **Requires level 2 authentication**
@@ -877,6 +916,24 @@ type clubSkin = {
     position: number
     description: string
     mediaUrls: unknown[]
+}
+
+export interface IclubCompetitions {
+    clubCompetitionList: competition[]
+    maxPage: number
+    itemCount: number
+}
+
+type competition = {
+    competitionId: number
+    mediaUrl: string
+    popularityLevel: number
+    popularityValue: number
+    id: number
+    clubId: number
+    clubName: string
+    name: string
+    creationTimestamp: number
 }
 
 export interface Iclubs {
