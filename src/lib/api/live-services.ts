@@ -134,6 +134,37 @@ export const getClubCampaigns = async (
 }
 
 /**
+ * Returns info about the room based on both the roomId and the clubId (used in Clubs)
+ *
+ * ## **Requires level 2 authentication**
+ *
+ * @category level 2
+ * @param {string} accessToken - Access token
+ * @param {number} clubId - Club ID
+ * @param {number} roomId - Room ID
+ *
+ */
+ export const getClubRoomById = async (
+    accessToken: string,
+    clubId: number,
+    roomId: number,
+): Promise<IclubRoom> => {
+    const headers = setHeaders(accessToken, 'nadeo')
+    const response = await axios({
+        url:
+            urls.liveServices +
+            '/api/token/club/' +
+            clubId +
+            '/room/' +
+            roomId,
+        method: 'GET',
+        headers,
+    })
+
+    return response['data']
+}
+
+/**
  * Returns your record in everymap of that group, and your position in each zone
  *
  * ## **Requires level 2 authentication**
@@ -658,6 +689,21 @@ export interface IclubRooms {
     clubRoomList: clubRoom[]
     maxPage: number
     itemCount: number
+}
+
+export interface IclubRoom {
+    id: number
+    clubId: number
+    nadeo: boolean
+    roomId: number
+    campaignId: unknown
+    playerServerLogin: unknown
+    activityId: number
+    mediaUrl: string
+    name: string
+    room: room
+    popularityLevel: number
+    creationTimestamp: number
 }
 
 type clubRoom = {
