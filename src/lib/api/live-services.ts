@@ -103,7 +103,7 @@ export const getClubCampaigns = async (
     return response['data']
 }
 /**
- * Find a campaign by passing its club ID and its own ID
+ * Returns info about the campaign based on both the campaignId and the clubId (used in Clubs)
  *
  * ## **Requires level 2 authentication**
  *
