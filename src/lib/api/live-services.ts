@@ -457,6 +457,44 @@ export const getClubSkins = async (
     return response['data']
 }
 
+/**
+ * Obtain all the information about the skins of a club
+ *
+ * ## **Requires level 2 authentication**
+ *
+ * @category level 2
+ * @param {string} accessToken - Access token
+ * @param {number} clubId - Club ID
+ * @param {number} roomId - Room ID
+ * @param {number} offset - Offset (default = 0)
+ * @param {number} length - Length (default = 24)
+ *
+ */
+ export const getClubSkinById = async (
+    accessToken: string,
+    clubId: number,
+    skinId: number,
+    offset: number = 0,
+    length: number = 24,
+): Promise<IclubSkin> => {
+    const headers = setHeaders(accessToken, 'nadeo')
+    const response = await axios({
+        url:
+            urls.liveServices +
+            '/api/token/club/' +
+            clubId +
+            '/bucket/' +
+            skinId +
+            '?offset=' +
+            offset +
+            '&length=' +
+            length,
+        method: 'GET',
+        headers,
+    })
+
+    return response['data']
+}
 
 /**
  * List all the clubs in the club section
@@ -802,12 +840,12 @@ type timeSlot = {
 }
 
 export interface IclubSkins {
-    clubBucketList: clubSkin[]
+    clubBucketList: clubSkins[]
     maxPage: number
     itemCount: number
 }
 
-type clubSkin = {
+type clubSkins = {
     type: string
     bucketItemCount: number
     popularityLevel: number
@@ -818,6 +856,27 @@ type clubSkin = {
     clubName: string
     name: string
     creationTimestamp: number
+}
+
+export interface IclubSkin {
+    type: string
+    bucketItemList: clubSkin[]
+    bucketItemCount: number
+    popularityLevel: number
+    popularityValue: number
+    medialUrl: string
+    id: number
+    clubId: number
+    clubName: string
+    name: string
+    creationTimestamp: number
+}
+
+type clubSkin = {
+    itemId: string
+    position: number
+    description: string
+    mediaUrls: unknown[]
 }
 
 export interface Iclubs {
