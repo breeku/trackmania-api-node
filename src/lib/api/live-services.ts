@@ -470,13 +470,13 @@ export const getClubSkins = async (
  * @param {number} length - Length (default = 24)
  *
  */
- export const getClubSkinById = async (
+ export const getClubBucketById = async (
     accessToken: string,
     clubId: number,
-    skinId: number,
+    bucketId: number,
     offset: number = 0,
     length: number = 24,
-): Promise<IclubSkin> => {
+): Promise<IclubBucket> => {
     const headers = setHeaders(accessToken, 'nadeo')
     const response = await axios({
         url:
@@ -484,7 +484,7 @@ export const getClubSkins = async (
             '/api/token/club/' +
             clubId +
             '/bucket/' +
-            skinId +
+            bucketId +
             '?offset=' +
             offset +
             '&length=' +
@@ -963,9 +963,9 @@ type clubSkins = {
     creationTimestamp: number
 }
 
-export interface IclubSkin {
+export interface IclubBucket {
     type: string
-    bucketItemList: clubSkin[]
+    bucketItemList: bucketItem[]
     bucketItemCount: number
     popularityLevel: number
     popularityValue: number
@@ -977,7 +977,7 @@ export interface IclubSkin {
     creationTimestamp: number
 }
 
-type clubSkin = {
+type bucketItem = {
     itemId: string
     position: number
     description: string
