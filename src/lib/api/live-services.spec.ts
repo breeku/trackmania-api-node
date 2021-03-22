@@ -7,6 +7,7 @@ import {
     getSeasons,
     getTOTDs,
     getClubCampaigns,
+    getClubCampaignById,
     getMyGroupRecords,
     getMyPositionGroup,
     getTopPlayersGroup,
@@ -14,8 +15,14 @@ import {
     getTopGroupPlayersMap,
     getSurroundingPlayersMap,
     getClubRooms,
+    getClubRoomById,
     getArcadeRooms,
+    getClubSkins,
+    getClubBucketById,
     getClubs,
+    getClubById,
+    getClubCompetitions,
+    getClubActivitiesById,
     getClubMembers,
     getPlayerRankings,
     getLeaderboardsAroundScore,
@@ -57,6 +64,19 @@ test('Get all TOTDs', async t => {
 test('List club campaigns', async t => {
     try {
         const response = await getClubCampaigns(t.context.account.lv2liveAccessToken)
+        t.assert(response)
+    } catch (err) {
+        t.fail(JSON.stringify(err.response.data))
+    }
+})
+
+test('Get a specific club campaign', async t => {
+    try {
+        const response = await getClubCampaignById(
+            t.context.account.lv2liveAccessToken,
+            0,
+            6151
+        )
         t.assert(response)
     } catch (err) {
         t.fail(JSON.stringify(err.response.data))
@@ -160,6 +180,19 @@ test('Get club rooms', async t => {
     }
 })
 
+test('Get a specific club room', async t => {
+    try {
+        const response = await getClubRoomById(
+            t.context.account.lv2liveAccessToken,
+            41,
+            766
+        )
+        t.assert(response)
+    } catch (err) {
+        t.fail(JSON.stringify(err.response.data))
+    }
+})
+
 test('Get arcade rooms', async t => {
     try {
         const response = await getArcadeRooms(t.context.account.lv2liveAccessToken)
@@ -169,9 +202,64 @@ test('Get arcade rooms', async t => {
     }
 })
 
+test('List club skins', async t => {
+    try {
+        const response = await getClubSkins(t.context.account.lv2liveAccessToken)
+        t.assert(response)
+    } catch (err) {
+        t.fail(JSON.stringify(err.response.data))
+    }
+})
+
+test('Get a specific club bucket', async t => {
+    try {
+        const response = await getClubBucketById(
+            t.context.account.lv2liveAccessToken,
+            383,
+            100982
+        )
+        t.assert(response)
+    } catch (err) {
+        t.fail(JSON.stringify(err.response.data))
+    }
+})
+
 test('Get clubs', async t => {
     try {
         const response = await getClubs(t.context.account.lv2liveAccessToken)
+        t.assert(response)
+    } catch (err) {
+        t.fail(JSON.stringify(err.response.data))
+    }
+})
+
+test('Get a specific club', async t => {
+    try {
+        const response = await getClubById(
+            t.context.account.lv2liveAccessToken,
+            383
+        )
+        t.assert(response)
+    } catch (err) {
+        t.fail(JSON.stringify(err.response.data))
+    }
+})
+
+test('List club competitions', async t => {
+    try {
+        const response = await getClubCompetitions(t.context.account.lv2liveAccessToken)
+        t.assert(response)
+    } catch (err) {
+        t.fail(JSON.stringify(err.response.data))
+    }
+})
+
+test('Get activities from a specific club', async t => {
+    try {
+        const response = await getClubActivitiesById(
+            t.context.account.lv2liveAccessToken,
+            383
+        )
         t.assert(response)
     } catch (err) {
         t.fail(JSON.stringify(err.response.data))

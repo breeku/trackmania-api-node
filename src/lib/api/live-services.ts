@@ -102,6 +102,36 @@ export const getClubCampaigns = async (
 
     return response['data']
 }
+/**
+ * Obtain all the information about the campaigns of a club
+ *
+ * ## **Requires level 2 authentication**
+ *
+ * @category level 2
+ * @param {string} accessToken - Access token
+ * @param {number} clubId - Club ID
+ * @param {number} campaignId - Campaign ID
+ *
+ */
+ export const getClubCampaignById = async (
+    accessToken: string,
+    clubId: number,
+    campaignId: number,
+): Promise<IclubCampaign> => {
+    const headers = setHeaders(accessToken, 'nadeo')
+    const response = await axios({
+        url:
+            urls.liveServices +
+            '/api/token/club/' +
+            clubId +
+            '/campaign/' +
+            campaignId,
+        method: 'GET',
+        headers,
+    })
+
+    return response['data']
+}
 
 /**
  * Returns your record in everymap of that group, and your position in each zone
@@ -338,6 +368,37 @@ export const getClubRooms = async (
 }
 
 /**
+ * Obtain all the information about the rooms of a club
+ *
+ * ## **Requires level 2 authentication**
+ *
+ * @category level 2
+ * @param {string} accessToken - Access token
+ * @param {number} clubId - Club ID
+ * @param {number} roomId - Room ID
+ *
+ */
+ export const getClubRoomById = async (
+    accessToken: string,
+    clubId: number,
+    roomId: number,
+): Promise<IclubRoom> => {
+    const headers = setHeaders(accessToken, 'nadeo')
+    const response = await axios({
+        url:
+            urls.liveServices +
+            '/api/token/club/' +
+            clubId +
+            '/room/' +
+            roomId,
+        method: 'GET',
+        headers,
+    })
+
+    return response['data']
+}
+
+/**
  * Obtain the information about the current arcade room and the next room
  *
  * ## **Requires level 2 authentication**
@@ -350,6 +411,84 @@ export const getArcadeRooms = async (accessToken: string): Promise<IarcadeRooms>
     const headers = setHeaders(accessToken, 'nadeo')
     const response = await axios({
         url: urls.liveServices + '/api/token/channel/officialhard',
+        method: 'GET',
+        headers,
+    })
+
+    return response['data']
+}
+
+/**
+ * This is used to obtain the skins in the Create section of the game
+ *
+ * ## **Requires level 2 authentication**
+ *
+ * @category level 2
+ * @param {string} accessToken - Access token
+ * @param {number} offset - Offset (default = 0)
+ * @param {number} length - Length (default = 75)
+ * @param {string} sort - Sort (default = 'popularity')
+ * @param {string} order - Order (default = 'DESC')
+ *
+ */
+export const getClubSkins = async (
+    accessToken: string,
+    offset: number = 0,
+    length: number = 75,
+    sort: string = 'popularity',
+    order: string = 'DESC',
+): Promise<IclubSkins> => {
+    const headers = setHeaders(accessToken, 'nadeo')
+    const response = await axios({
+        url:
+            urls.liveServices +
+            '/api/token/club/room?offset=' +
+            offset +
+            '&length=' +
+            length +
+            '&sort=' +
+            sort +
+            '&order=' +
+            order,
+        method: 'GET',
+        headers,
+    })
+
+    return response['data']
+}
+
+/**
+ * Obtain all the information about the skins of a club
+ *
+ * ## **Requires level 2 authentication**
+ *
+ * @category level 2
+ * @param {string} accessToken - Access token
+ * @param {number} clubId - Club ID
+ * @param {number} roomId - Room ID
+ * @param {number} offset - Offset (default = 0)
+ * @param {number} length - Length (default = 24)
+ *
+ */
+ export const getClubBucketById = async (
+    accessToken: string,
+    clubId: number,
+    bucketId: number,
+    offset: number = 0,
+    length: number = 24,
+): Promise<IclubBucket> => {
+    const headers = setHeaders(accessToken, 'nadeo')
+    const response = await axios({
+        url:
+            urls.liveServices +
+            '/api/token/club/' +
+            clubId +
+            '/bucket/' +
+            bucketId +
+            '?offset=' +
+            offset +
+            '&length=' +
+            length,
         method: 'GET',
         headers,
     })
@@ -381,6 +520,111 @@ export const getClubs = async (
             offset +
             '&length=' +
             length,
+        method: 'GET',
+        headers,
+    })
+
+    return response['data']
+}
+
+/**
+ * Obtain all the information about a club
+ *
+ * ## **Requires level 2 authentication**
+ *
+ * @category level 2
+ * @param {string} accessToken - Access token
+ * @param {number} clubId - Club ID
+ *
+ */
+ export const getClubById = async (
+    accessToken: string,
+    clubId: number,
+): Promise<Iclub> => {
+    const headers = setHeaders(accessToken, 'nadeo')
+    const response = await axios({
+        url:
+            urls.liveServices +
+            '/api/token/club/' +
+            clubId,
+        method: 'GET',
+        headers,
+    })
+
+    return response['data']
+}
+
+/**
+ * This is used to obtain the competitions in the Events section of the game
+ *
+ * ## **Requires level 2 authentication**
+ *
+ * @category level 2
+ * @param {string} accessToken - Access token
+ * @param {number} offset - Offset (default = 0)
+ * @param {number} length - Length (default = 75)
+ * @param {string} sort - Sort (default = 'popularity')
+ * @param {string} order - Order (default = 'DESC')
+ *
+ */
+ export const getClubCompetitions = async (
+    accessToken: string,
+    offset: number = 0,
+    length: number = 75,
+    sort: string = 'popularity',
+    order: string = 'DESC',
+): Promise<IclubCompetitions> => {
+    const headers = setHeaders(accessToken, 'nadeo')
+    const response = await axios({
+        url:
+            urls.liveServices +
+            '/api/token/club/competition?offset=' +
+            offset +
+            '&length=' +
+            length +
+            '&sort=' +
+            sort +
+            '&order=' +
+            order,
+        method: 'GET',
+        headers,
+    })
+
+    return response['data']
+}
+
+/**
+ * This is used to obtain the competitions in the Events section of the game
+ *
+ * ## **Requires level 2 authentication**
+ *
+ * @category level 2
+ * @param {string} accessToken - Access token
+ * @param {number} clubId - Club ID
+ * @param {number} offset - Offset (default = 0)
+ * @param {number} length - Length (default = 75)
+ * @param {number} active - Active (default = 1)
+ *
+ */
+ export const getClubActivitiesById = async (
+    accessToken: string,
+    clubId: number,
+    offset: number = 0,
+    length: number = 75,
+    active: number = 1,
+): Promise<IclubActivities> => {
+    const headers = setHeaders(accessToken, 'nadeo')
+    const response = await axios({
+        url:
+            urls.liveServices +
+            '/api/token/club/' +
+            clubId +
+            'activity?offset=' +
+            offset +
+            '&length=' +
+            length +
+            '&active=' +
+            active,
         method: 'GET',
         headers,
     })
@@ -540,6 +784,21 @@ export interface IclubCampaigns {
     itemCount: number
 }
 
+export interface IclubCampaign {
+    clubId: number
+    clubIconUrl: string
+    clubDecalUrl: string
+    campaignId: number
+    publicationTimestamp: number
+    publishedOn: number
+    creationTimestamp: number
+    activityId: number
+    mediaUrl: string
+    name: string
+    campaign: campaign
+    popularityLevel: number
+}
+
 type clubCampaign = {
     clubId: number
     clubIconUrl: string
@@ -615,6 +874,21 @@ export interface IclubRooms {
     itemCount: number
 }
 
+export interface IclubRoom {
+    id: number
+    clubId: number
+    nadeo: boolean
+    roomId: number
+    campaignId: unknown
+    playerServerLogin: unknown
+    activityId: number
+    mediaUrl: string
+    name: string
+    room: room
+    popularityLevel: number
+    creationTimestamp: number
+}
+
 type clubRoom = {
     id: number
     clubId: number
@@ -670,10 +944,109 @@ type timeSlot = {
     mediaUrl: string
 }
 
+export interface IclubSkins {
+    clubBucketList: clubSkins[]
+    maxPage: number
+    itemCount: number
+}
+
+type clubSkins = {
+    type: string
+    bucketItemCount: number
+    popularityLevel: number
+    popularityValue: number
+    medialUrl: string
+    id: number
+    clubId: number
+    clubName: string
+    name: string
+    creationTimestamp: number
+}
+
+export interface IclubBucket {
+    type: string
+    bucketItemList: bucketItem[]
+    bucketItemCount: number
+    popularityLevel: number
+    popularityValue: number
+    medialUrl: string
+    id: number
+    clubId: number
+    clubName: string
+    name: string
+    creationTimestamp: number
+}
+
+type bucketItem = {
+    itemId: string
+    position: number
+    description: string
+    mediaUrls: unknown[]
+}
+
+export interface IclubCompetitions {
+    clubCompetitionList: competition[]
+    maxPage: number
+    itemCount: number
+}
+
+type competition = {
+    competitionId: number
+    mediaUrl: string
+    popularityLevel: number
+    popularityValue: number
+    id: number
+    clubId: number
+    clubName: string
+    name: string
+    creationTimestamp: number
+}
+
+export interface IclubActivities {
+    activityList: activity[]
+    maxPage: number
+    itemCount: number
+}
+
+type activity = {
+    id: number
+    name: string
+    activityType: string
+    activityId: number
+    targetActivityId: number
+    campaignId: number
+    position: number
+    public: boolean
+    active: boolean
+    mediaUrl: string
+    externalId: number
+    password: boolean
+}
+
 export interface Iclubs {
     clubList: unknown[]
     maxPage: number
     clubCount: number
+}
+
+export interface Iclub {
+    id: number
+    name: string
+    tag: string
+    description: string
+    iconUrl: string
+    logoUrl: string
+    decalUrl: string
+    screen16x9Url: string
+    decalSponsor4x1Url: string
+    screen8x1Url: string
+    screen16x1Url: string
+    verticalUrl: string
+    backgroundUrl: string
+    creationTimestamp: number
+    popularityLevel: number
+    state: string
+    featured: boolean
 }
 
 export interface IclubMembers {
